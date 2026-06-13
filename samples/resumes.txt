@@ -1,0 +1,79 @@
+Ananya Sharma
+ananya.sharma@email.com | github.com/ananyaml | Bengaluru, India (Remote)
+
+SUMMARY
+6 years building ML systems in fintech and SaaS. Last 2 years focused entirely on
+LLM-powered products: production RAG pipelines, LLM evaluation frameworks, and
+LangChain-based agents. Led the AI platform team at a Series B startup.
+
+EXPERIENCE
+Senior ML Engineer — FinAI Labs (Jan 2022 – present)
+  • Architected a multi-tenant RAG system (LangChain 0.2, ChromaDB, FastAPI)
+    serving 25k daily queries with p99 latency < 1.2s
+  • Built LLM evaluation pipeline using RAGAS + custom rubrics; cut hallucination
+    rate from 18% to 4% over 3 months
+  • Migrated from single-model to multi-model routing (GPT-4o / Claude 3.5 Sonnet)
+    saving ~$12k/month in inference costs
+  • Mentored 3 junior engineers; introduced weekly model review sessions
+
+ML Engineer — Accenture AI (Jul 2018 – Dec 2021)
+  • NLP pipelines for document classification (BERT fine-tuning, spaCy)
+  • ETL + feature engineering on PySpark for 10M+ daily events
+
+SKILLS
+Python (FastAPI, async, Pydantic), LangChain 0.2+, LangGraph, ChromaDB, Pinecone,
+RAGAS, Docker, Kubernetes, AWS (SageMaker, Lambda), PostgreSQL, Redis
+
+EDUCATION
+B.Tech Computer Science — IIT Bombay (2018)
+
+---
+
+Rohan Verma
+rohan.v.dev@gmail.com | Pune, India
+
+SUMMARY
+3 years Python developer. Recently completed an online ML course (Coursera DeepLearning.ai).
+Interested in moving into AI/LLM roles. Built a personal ChatGPT wrapper as a side project.
+
+EXPERIENCE
+Software Developer — TechSolutions Pvt Ltd (2021 – present)
+  • Django REST APIs for an internal HR system
+  • Wrote unit tests, maintained CI/CD on GitHub Actions
+  • Zero LLM or ML work in production
+
+EDUCATION
+B.Sc. Computer Science — Pune University (2021)
+
+SKILLS
+Python, Django, MySQL, basic scikit-learn (from coursework), Git
+
+---
+
+Marcus Chen
+mchen@protonmail.com | San Francisco, CA (Remote)
+
+SUMMARY
+5 years ML Engineer. Strong background in NLP, transformer fine-tuning, and
+recently LLM application development. One year of LangGraph experience building
+self-healing agentic pipelines at an AI infrastructure startup.
+
+EXPERIENCE
+ML Engineer — AgentOps.ai (Feb 2023 – present)
+  • Built production LangGraph workflows with circuit-breaker patterns and
+    automatic state rollback on node failure
+  • Vector search at scale: migrated from Pinecone to Weaviate, 40% cost reduction
+  • LLM evaluation: custom rubric design, automated regression testing
+  • Fine-tuned Mistral 7B with LoRA for domain-specific Q&A (reduced hallucinations 60%)
+
+ML Engineer — Stripe (Jun 2019 – Jan 2023)
+  • Fraud detection models (XGBoost, deep learning) serving 500k txn/day
+  • Model monitoring and drift detection with custom alerting
+
+EDUCATION
+M.S. Computer Science (ML specialisation) — Stanford University (2019)
+B.Eng. Electrical Engineering — UC Berkeley (2017)   ← cross-domain background
+
+SKILLS
+Python, LangChain 0.2+, LangGraph, ChromaDB, Weaviate, RAGAS, fine-tuning (LoRA/QLoRA),
+FastAPI, Docker, Kubernetes, GCP (Vertex AI), PyTorch, AWS

@@ -1,0 +1,24 @@
+Senior ML / LLM Engineer
+
+We are looking for a Senior ML Engineer with deep hands-on experience building
+production RAG pipelines and LLM-powered applications.
+
+Required:
+- 4+ years Python (FastAPI, async, type hints)
+- LangChain 0.2+ and LangGraph for agentic workflows
+- Vector store experience: ChromaDB, Pinecone, or Weaviate
+- LLM evaluation: designing rubrics, using RAGAS or custom evals
+- Production deployment on AWS / GCP: Docker, Kubernetes, CI/CD
+
+Nice to have:
+- Fine-tuning experience (LoRA / QLoRA on open-source models)
+- Prompt engineering & structured output techniques
+- Mechanical or cross-domain engineering background (systems thinking)
+
+You will:
+- Architect and ship RAG systems serving > 10k daily queries
+- Run LLM evaluation pipelines and report on quality regressions
+- Mentor 2 junior engineers
+- Collaborate with product on defining AI capabilities roadmap
+
+Compensation: $130k–$160k USD remote

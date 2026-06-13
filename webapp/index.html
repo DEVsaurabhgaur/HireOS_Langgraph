@@ -1,0 +1,4064 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HireOS — AI Resume Intelligence | Fix & Win Your Dream Job</title>
+  <meta name="description"
+    content="The only AI that actually fixes your resume for each job — not just scores it. AI-powered resume rewriter, ATS optimizer, and interview coach. One-time ₹199. Use forever." />
+  <meta name="keywords"
+    content="resume rewriter AI, ATS optimizer, resume score, interview prep, job application, Gemini AI resume" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet" />
+  <!-- Razorpay SDK -->
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #060610;
+      --bg2: #0c0c1e;
+      --bg3: #111128;
+      --glass: rgba(255, 255, 255, 0.03);
+      --glass2: rgba(255, 255, 255, 0.06);
+      --border: rgba(255, 255, 255, 0.07);
+      --border-h: rgba(139, 92, 246, 0.6);
+      --indigo: #6366f1;
+      --violet: #8b5cf6;
+      --cyan: #06b6d4;
+      --emerald: #10b981;
+      --rose: #f43f5e;
+      --amber: #f59e0b;
+      --gold: #fbbf24;
+      --text: #eef2ff;
+      --text-2: #94a3b8;
+      --text-3: #3f4a63;
+      --r: 16px;
+      --shadow: 0 32px 64px rgba(0, 0, 0, 0.7);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── Orb backdrop ── */
+    .orb-wrap {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(120px);
+      opacity: 0.35;
+      animation: orbFloat 12s ease-in-out infinite alternate;
+    }
+
+    .orb1 {
+      width: 700px;
+      height: 700px;
+      top: -200px;
+      left: -200px;
+      background: radial-gradient(circle, #4f46e5 0%, transparent 70%);
+    }
+
+    .orb2 {
+      width: 500px;
+      height: 500px;
+      bottom: -150px;
+      right: -100px;
+      background: radial-gradient(circle, #7c3aed 0%, transparent 70%);
+      animation-delay: -6s;
+    }
+
+    .orb3 {
+      width: 350px;
+      height: 350px;
+      top: 40%;
+      left: 55%;
+      background: radial-gradient(circle, #0891b2 0%, transparent 70%);
+      animation-delay: -3s;
+    }
+
+    @keyframes orbFloat {
+      from {
+        transform: scale(1) translate(0, 0)
+      }
+
+      to {
+        transform: scale(1.1) translate(30px, 20px)
+      }
+    }
+
+    /* ── Grid noise overlay ── */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.015'%3E%3Cpath d='M0 0h40v1H0zM0 0v40h1V0z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 200;
+      padding: 14px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(6, 6, 16, 0.85);
+      backdrop-filter: blur(24px) saturate(1.5);
+      border-bottom: 1px solid var(--border);
+    }
+
+    @media(max-width:600px) {
+      nav {
+        padding: 14px 20px;
+      }
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 900;
+      font-size: 22px;
+      letter-spacing: -0.8px;
+      text-decoration: none;
+      color: var(--text);
+    }
+
+    .logo-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--indigo), var(--violet));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      box-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
+    }
+
+    .logo-text {
+      background: linear-gradient(90deg, #a5b4fc, var(--violet));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .nav-pill {
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      color: var(--emerald);
+    }
+
+    .nav-pill::before {
+      content: '●';
+      margin-right: 5px;
+      font-size: 7px;
+      vertical-align: middle;
+    }
+
+    .nav-premium-btn {
+      padding: 8px 18px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 800;
+      background: linear-gradient(135deg, #f59e0b, #fbbf24);
+      border: none;
+      color: #000;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.3s;
+      letter-spacing: -0.2px;
+      box-shadow: 0 4px 16px rgba(251, 191, 36, 0.35);
+    }
+
+    .nav-premium-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(251, 191, 36, 0.5);
+    }
+
+    .nav-crown {
+      font-size: 13px;
+      font-weight: 800;
+      padding: 6px 14px;
+      border-radius: 20px;
+      background: rgba(251, 191, 36, 0.1);
+      border: 1px solid rgba(251, 191, 36, 0.35);
+      color: var(--gold);
+      display: none;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      z-index: 1;
+      padding: 140px 48px 60px;
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    @media(max-width:600px) {
+      .hero {
+        padding: 110px 20px 40px;
+      }
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 18px;
+      border-radius: 30px;
+      background: rgba(99, 102, 241, 0.08);
+      border: 1px solid rgba(99, 102, 241, 0.25);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      color: var(--indigo);
+      margin-bottom: 30px;
+      animation: fadeUp 0.7s ease both;
+    }
+
+    .hero-badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--emerald);
+      animation: blink 2s infinite;
+    }
+
+    @keyframes blink {
+
+      0%,
+      100% {
+        opacity: 1
+      }
+
+      50% {
+        opacity: 0.3
+      }
+    }
+
+    h1 {
+      font-size: clamp(34px, 5.5vw, 65px);
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -2.5px;
+      animation: fadeUp 0.7s 0.1s ease both;
+    }
+
+    .grad {
+      background: linear-gradient(135deg, #c7d2fe 20%, var(--violet) 60%, var(--cyan));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .grad-gold {
+      background: linear-gradient(135deg, #f59e0b, #fbbf24);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-sub {
+      margin-top: 22px;
+      font-size: 17px;
+      color: var(--text-2);
+      line-height: 1.75;
+      max-width: 620px;
+      margin-left: auto;
+      margin-right: auto;
+      animation: fadeUp 0.7s 0.2s ease both;
+    }
+
+    .hero-cta-row {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      margin-top: 36px;
+      flex-wrap: wrap;
+      animation: fadeUp 0.7s 0.3s ease both;
+    }
+
+    .btn-hero-pay {
+      padding: 16px 36px;
+      border-radius: 14px;
+      font-size: 16px;
+      font-weight: 800;
+      font-family: inherit;
+      background: linear-gradient(135deg, #f59e0b, #fbbf24);
+      border: none;
+      color: #000;
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: 0 8px 32px rgba(245, 158, 11, 0.4);
+      letter-spacing: -0.2px;
+    }
+
+    .btn-hero-pay:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 48px rgba(245, 158, 11, 0.55);
+    }
+
+    .btn-hero-free {
+      padding: 16px 28px;
+      border-radius: 14px;
+      font-size: 15px;
+      font-weight: 700;
+      font-family: inherit;
+      background: transparent;
+      border: 1.5px solid var(--border);
+      color: var(--text-2);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-hero-free:hover {
+      border-color: rgba(139, 92, 246, 0.5);
+      color: var(--text);
+    }
+
+    .hero-kpis {
+      display: flex;
+      justify-content: center;
+      gap: 48px;
+      margin-top: 52px;
+      animation: fadeUp 0.7s 0.35s ease both;
+      flex-wrap: wrap;
+    }
+
+    .kpi {
+      text-align: center;
+    }
+
+    .kpi-n {
+      font-size: 30px;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--indigo), var(--violet));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .kpi-l {
+      font-size: 12px;
+      color: var(--text-3);
+      margin-top: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(28px)
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0)
+      }
+    }
+
+    /* ── PROBLEM SECTION ── */
+    .section-wrapper {
+      position: relative;
+      z-index: 1;
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 24px 60px;
+    }
+
+    .problem-section {
+      margin-bottom: 60px;
+    }
+
+    .section-eyebrow {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--indigo);
+      margin-bottom: 16px;
+      text-align: center;
+    }
+
+    .section-title {
+      font-size: clamp(26px, 4vw, 38px);
+      font-weight: 900;
+      letter-spacing: -1px;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .compare-table th {
+      padding: 14px 20px;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      background: rgba(255, 255, 255, 0.04);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .compare-table td {
+      padding: 14px 20px;
+      font-size: 14px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .compare-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .compare-table tr:hover td {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .col-them {
+      color: var(--rose);
+      text-align: center;
+    }
+
+    .col-us {
+      color: var(--emerald);
+      text-align: center;
+    }
+
+    .col-pain {
+      color: var(--text-2);
+    }
+
+    th.col-us {
+      color: var(--emerald);
+    }
+
+    th.col-them {
+      color: var(--rose);
+    }
+
+    .tbl-wrap {
+      background: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      backdrop-filter: blur(24px);
+      overflow: hidden;
+    }
+
+    /* ── HOW IT WORKS ── */
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    @media(max-width:700px) {
+      .steps-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .step-card {
+      background: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 28px 24px;
+      text-align: center;
+      transition: all 0.3s;
+    }
+
+    .step-card:hover {
+      border-color: rgba(139, 92, 246, 0.35);
+      background: rgba(139, 92, 246, 0.04);
+      transform: translateY(-3px);
+    }
+
+    .step-num {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--indigo), var(--violet));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      font-weight: 900;
+      margin: 0 auto 16px;
+      box-shadow: 0 4px 16px rgba(99, 102, 241, 0.4);
+    }
+
+    .step-title {
+      font-size: 16px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .step-desc {
+      font-size: 13px;
+      color: var(--text-2);
+      line-height: 1.6;
+    }
+
+    /* ── PRICING CARD ── */
+    .pricing-wrapper {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 60px;
+    }
+
+    .pricing-card {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.08), rgba(139, 92, 246, 0.05));
+      border: 1px solid rgba(139, 92, 246, 0.3);
+      border-radius: 28px;
+      padding: 44px 52px;
+      text-align: center;
+      max-width: 460px;
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(24px);
+      box-shadow: 0 0 60px rgba(139, 92, 246, 0.12);
+    }
+
+    .pricing-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--indigo), var(--violet), var(--cyan));
+    }
+
+    .pricing-badge {
+      display: inline-block;
+      padding: 5px 14px;
+      border-radius: 20px;
+      background: rgba(251, 191, 36, 0.12);
+      border: 1px solid rgba(251, 191, 36, 0.3);
+      color: var(--gold);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      margin-bottom: 20px;
+    }
+
+    .pricing-price {
+      font-size: 68px;
+      font-weight: 900;
+      letter-spacing: -3px;
+      line-height: 1;
+    }
+
+    .pricing-price sup {
+      font-size: 28px;
+      vertical-align: super;
+      letter-spacing: 0;
+    }
+
+    .pricing-once {
+      font-size: 14px;
+      color: var(--text-2);
+      margin-top: 8px;
+    }
+
+    .pricing-features {
+      text-align: left;
+      margin: 28px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .pricing-feat {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 14px;
+    }
+
+    .feat-icon {
+      color: var(--emerald);
+      font-size: 16px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .btn-pay {
+      width: 100%;
+      padding: 18px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #f59e0b, #fbbf24);
+      border: none;
+      color: #000;
+      font-size: 17px;
+      font-weight: 900;
+      font-family: inherit;
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: 0 8px 32px rgba(245, 158, 11, 0.4);
+      letter-spacing: -0.3px;
+    }
+
+    .btn-pay:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 48px rgba(245, 158, 11, 0.6);
+    }
+
+    .pricing-trust {
+      font-size: 12px;
+      color: var(--text-3);
+      margin-top: 16px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    /* ── LAYOUT ── */
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 24px 120px;
+    }
+
+    /* ── GLASS CARD ── */
+    .card {
+      background: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 40px;
+      backdrop-filter: blur(24px) saturate(1.4);
+      box-shadow: var(--shadow), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+      margin-bottom: 20px;
+      animation: fadeUp 0.7s 0.35s ease both;
+    }
+
+    @media(max-width:600px) {
+      .card {
+        padding: 24px 20px;
+      }
+    }
+
+    .card-title {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--indigo);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .card-title::before {
+      content: '';
+      display: block;
+      width: 16px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--indigo), var(--violet));
+      border-radius: 2px;
+    }
+
+    /* ── TABS ── */
+    .tabs {
+      display: flex;
+      gap: 4px;
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 5px;
+      margin-bottom: 36px;
+    }
+
+    .tab {
+      flex: 1;
+      padding: 11px 8px;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 700;
+      font-family: inherit;
+      color: var(--text-2);
+      background: transparent;
+      transition: all 0.25s;
+      position: relative;
+    }
+
+    .tab.active {
+      background: linear-gradient(135deg, var(--indigo), var(--violet));
+      color: #fff;
+      box-shadow: 0 4px 16px rgba(99, 102, 241, 0.4);
+    }
+
+    .tab:not(.active):hover {
+      color: var(--text);
+      background: var(--glass2);
+    }
+
+    .tab-panel {
+      display: none;
+    }
+
+    .tab-panel.active {
+      display: block;
+    }
+
+    .tab-premium-badge {
+      display: inline-block;
+      font-size: 9px;
+      padding: 2px 6px;
+      border-radius: 6px;
+      background: rgba(251, 191, 36, 0.15);
+      border: 1px solid rgba(251, 191, 36, 0.3);
+      color: var(--gold);
+      font-weight: 800;
+      margin-left: 4px;
+      vertical-align: middle;
+      letter-spacing: 0.5px;
+    }
+
+    /* ── PAYWALL OVERLAY ── */
+    .paywall {
+      text-align: center;
+      padding: 60px 30px;
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.05), rgba(139, 92, 246, 0.04));
+      border: 1px solid rgba(139, 92, 246, 0.2);
+      border-radius: 20px;
+    }
+
+    .paywall-icon {
+      font-size: 52px;
+      margin-bottom: 20px;
+    }
+
+    .paywall-title {
+      font-size: 26px;
+      font-weight: 900;
+      margin-bottom: 12px;
+    }
+
+    .paywall-sub {
+      font-size: 15px;
+      color: var(--text-2);
+      line-height: 1.7;
+      margin-bottom: 28px;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .paywall-feats {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      text-align: left;
+      max-width: 340px;
+      margin: 0 auto 32px;
+    }
+
+    .paywall-feat {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .paywall-feat-icon {
+      color: var(--emerald);
+      font-size: 16px;
+    }
+
+    .paywall-price {
+      font-size: 42px;
+      font-weight: 900;
+    }
+
+    .paywall-price-sub {
+      font-size: 13px;
+      color: var(--text-2);
+      margin-top: 4px;
+      margin-bottom: 24px;
+    }
+
+    .btn-paywall {
+      padding: 16px 48px;
+      border-radius: 14px;
+      font-size: 16px;
+      font-weight: 900;
+      font-family: inherit;
+      background: linear-gradient(135deg, #f59e0b, #fbbf24);
+      border: none;
+      color: #000;
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: 0 8px 32px rgba(245, 158, 11, 0.4);
+    }
+
+    .btn-paywall:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 48px rgba(245, 158, 11, 0.6);
+    }
+
+    .paywall-trust {
+      font-size: 12px;
+      color: var(--text-3);
+      margin-top: 16px;
+    }
+
+    /* ── PRESET ROLES ── */
+    .section-label {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--text-3);
+      margin-bottom: 12px;
+    }
+
+    .role-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    @media(max-width:600px) {
+      .role-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .role-card {
+      border: 1.5px solid var(--border);
+      border-radius: 14px;
+      padding: 16px 18px;
+      cursor: pointer;
+      transition: all 0.25s;
+      background: var(--glass);
+      display: flex;
+      align-items: flex-start;
+      gap: 13px;
+    }
+
+    .role-card:hover {
+      border-color: rgba(139, 92, 246, 0.4);
+      background: rgba(139, 92, 246, 0.05);
+    }
+
+    .role-card.selected {
+      border-color: var(--violet);
+      background: rgba(139, 92, 246, 0.1);
+      box-shadow: 0 0 0 1px rgba(139, 92, 246, 0.3);
+    }
+
+    .role-emoji {
+      font-size: 22px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .role-name {
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .role-desc {
+      font-size: 12px;
+      color: var(--text-2);
+      margin-top: 3px;
+      line-height: 1.5;
+    }
+
+    /* ── FORM FIELDS ── */
+    .field {
+      margin-bottom: 22px;
+    }
+
+    .field-label {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-2);
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 9px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .field-label a {
+      color: var(--violet);
+      text-decoration: none;
+      font-weight: 600;
+      text-transform: none;
+      letter-spacing: 0;
+    }
+
+    .field-label a:hover {
+      text-decoration: underline;
+    }
+
+    input[type="text"],
+    input[type="password"],
+    textarea {
+      width: 100%;
+      padding: 13px 16px;
+      background: rgba(0, 0, 0, 0.4);
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      color: var(--text);
+      font-family: inherit;
+      font-size: 14px;
+      line-height: 1.5;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+      resize: vertical;
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: var(--border-h);
+      background: rgba(0, 0, 0, 0.5);
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.12);
+    }
+
+    textarea {
+      min-height: 110px;
+    }
+
+    /* ── UPLOAD ── */
+    .upload-zone {
+      border: 2px dashed var(--border);
+      border-radius: 16px;
+      padding: 36px 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s;
+      position: relative;
+      background: rgba(0, 0, 0, 0.3);
+    }
+
+    .upload-zone:hover,
+    .upload-zone.drag {
+      border-color: var(--violet);
+      background: rgba(139, 92, 246, 0.06);
+    }
+
+    .upload-zone.has-file {
+      border-color: var(--emerald);
+      border-style: solid;
+      background: rgba(16, 185, 129, 0.05);
+    }
+
+    .upload-zone input[type="file"] {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      cursor: pointer;
+      width: 100%;
+      height: 100%;
+    }
+
+    .upload-icon {
+      font-size: 36px;
+      margin-bottom: 10px;
+    }
+
+    .upload-zone h3 {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 5px;
+    }
+
+    .upload-zone p {
+      font-size: 12px;
+      color: var(--text-2);
+    }
+
+    .file-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      margin-top: 12px;
+      padding: 6px 14px;
+      border-radius: 20px;
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--emerald);
+    }
+
+    /* ── ADVANCED SETTINGS ── */
+    .adv-toggle {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-3);
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      user-select: none;
+      margin-bottom: 0;
+      transition: color 0.2s;
+    }
+
+    .adv-toggle:hover {
+      color: var(--text-2);
+    }
+
+    .adv-toggle-icon {
+      width: 22px;
+      height: 22px;
+      border-radius: 6px;
+      border: 1.5px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      transition: all 0.2s;
+    }
+
+    .adv-toggle.open .adv-toggle-icon {
+      border-color: var(--border-h);
+      color: var(--violet);
+    }
+
+    .adv-body {
+      display: none;
+      margin-top: 14px;
+    }
+
+    .adv-body.open {
+      display: block;
+    }
+
+    /* ── BUTTON ── */
+    .btn {
+      width: 100%;
+      padding: 17px;
+      background: linear-gradient(135deg, var(--indigo), var(--violet));
+      border: none;
+      border-radius: 14px;
+      color: #fff;
+      font-size: 16px;
+      font-weight: 800;
+      font-family: inherit;
+      cursor: pointer;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+      letter-spacing: -0.2px;
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .btn:hover::before {
+      opacity: 1;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 40px rgba(99, 102, 241, 0.45);
+    }
+
+    .btn:active {
+      transform: translateY(0);
+    }
+
+    .btn:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .btn-gold {
+      width: 100%;
+      padding: 17px;
+      border-radius: 14px;
+      border: none;
+      background: linear-gradient(135deg, #f59e0b, #fbbf24);
+      color: #000;
+      font-size: 16px;
+      font-weight: 900;
+      font-family: inherit;
+      cursor: pointer;
+      transition: all 0.3s;
+      letter-spacing: -0.2px;
+      box-shadow: 0 8px 32px rgba(245, 158, 11, 0.35);
+    }
+
+    .btn-gold:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 48px rgba(245, 158, 11, 0.55);
+    }
+
+    .btn-gold:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* ── LOADER ── */
+    #loading {
+      display: none;
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    #rewrite-loading {
+      display: none;
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    .spinner-wrap {
+      position: relative;
+      width: 72px;
+      height: 72px;
+      margin: 0 auto 28px;
+    }
+
+    .spinner {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      border: 3px solid rgba(255, 255, 255, 0.05);
+      border-top-color: var(--indigo);
+      border-right-color: var(--violet);
+      animation: spin 1s linear infinite;
+    }
+
+    .spinner-core {
+      position: absolute;
+      inset: 10px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(99, 102, 241, 0.15), transparent);
+      animation: pulse-core 2s ease-in-out infinite;
+    }
+
+    .spinner-gold {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      border: 3px solid rgba(255, 255, 255, 0.05);
+      border-top-color: #f59e0b;
+      border-right-color: #fbbf24;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg)
+      }
+    }
+
+    @keyframes pulse-core {
+
+      0%,
+      100% {
+        opacity: 1
+      }
+
+      50% {
+        opacity: 0.4
+      }
+    }
+
+    .agent-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-width: 340px;
+      margin: 28px auto 0;
+    }
+
+    .agent-step {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 16px;
+      border-radius: 12px;
+      background: var(--glass);
+      border: 1px solid var(--border);
+      font-size: 14px;
+      color: var(--text-3);
+      font-weight: 600;
+      transition: all 0.4s;
+    }
+
+    .agent-step.active {
+      color: var(--text);
+      border-color: rgba(99, 102, 241, 0.4);
+      background: rgba(99, 102, 241, 0.08);
+    }
+
+    .agent-step.done {
+      color: var(--emerald);
+      border-color: rgba(16, 185, 129, 0.3);
+      background: rgba(16, 185, 129, 0.06);
+    }
+
+    .step-icon {
+      font-size: 18px;
+      width: 24px;
+      text-align: center;
+      flex-shrink: 0;
+    }
+
+    /* ── RESULTS ── */
+    #results {
+      display: none;
+    }
+
+    #rewrite-results {
+      display: none;
+    }
+
+    .result-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 32px;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .candidate-name {
+      font-size: 26px;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+    }
+
+    .btn-sm {
+      padding: 9px 20px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1.5px solid var(--border);
+      color: var(--text-2);
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.2s;
+    }
+
+    .btn-sm:hover {
+      border-color: var(--border-h);
+      color: var(--text);
+      background: rgba(99, 102, 241, 0.08);
+    }
+
+    /* Score gauge */
+    .gauge-grid {
+      display: grid;
+      grid-template-columns: 190px 1fr;
+      gap: 28px;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+
+    @media(max-width:560px) {
+      .gauge-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+    }
+
+    .gauge-wrap {
+      position: relative;
+      width: 170px;
+      height: 170px;
+      margin: 0 auto;
+    }
+
+    .gauge-svg {
+      transform: rotate(-90deg);
+    }
+
+    .gauge-bg {
+      fill: none;
+      stroke: rgba(255, 255, 255, 0.06);
+      stroke-width: 11;
+    }
+
+    .gauge-fg {
+      fill: none;
+      stroke-width: 11;
+      stroke-linecap: round;
+      transition: stroke-dashoffset 1.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .gauge-center {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .gauge-val {
+      font-size: 42px;
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: -2px;
+    }
+
+    .gauge-sub {
+      font-size: 12px;
+      color: var(--text-2);
+      margin-top: 4px;
+      font-weight: 600;
+    }
+
+    .verdict-chip {
+      display: inline-block;
+      padding: 7px 18px;
+      border-radius: 30px;
+      font-size: 13px;
+      font-weight: 800;
+      margin-top: 14px;
+      letter-spacing: 0.3px;
+    }
+
+    /* Section heading */
+    .sec {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--text-3);
+      margin: 28px 0 12px;
+    }
+
+    /* Tag pills */
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag {
+      padding: 6px 13px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .tag.g {
+      background: rgba(16, 185, 129, 0.12);
+      color: var(--emerald);
+      border: 1px solid rgba(16, 185, 129, 0.25);
+    }
+
+    .tag.r {
+      background: rgba(244, 63, 94, 0.12);
+      color: var(--rose);
+      border: 1px solid rgba(244, 63, 94, 0.25);
+    }
+
+    .tag.b {
+      background: rgba(99, 102, 241, 0.12);
+      color: #a5b4fc;
+      border: 1px solid rgba(99, 102, 241, 0.25);
+    }
+
+    .tag.a {
+      background: rgba(245, 158, 11, 0.12);
+      color: var(--amber);
+      border: 1px solid rgba(245, 158, 11, 0.25);
+    }
+
+    .tag.gold {
+      background: rgba(251, 191, 36, 0.12);
+      color: var(--gold);
+      border: 1px solid rgba(251, 191, 36, 0.25);
+    }
+
+    /* Two-col grid */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    @media(max-width:540px) {
+      .two-col {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .info-box {
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px 18px;
+    }
+
+    .info-box-label {
+      font-size: 10px;
+      font-weight: 800;
+      color: var(--text-3);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+
+    .info-box-val {
+      font-size: 15px;
+      font-weight: 700;
+      margin-top: 5px;
+      line-height: 1.4;
+    }
+
+    .info-box-val.muted {
+      font-weight: 400;
+      font-size: 13px;
+      color: var(--text-2);
+      line-height: 1.6;
+    }
+
+    /* Roadmap */
+    .roadmap {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .roadmap-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      background: rgba(245, 158, 11, 0.05);
+      border: 1px solid rgba(245, 158, 11, 0.15);
+      border-radius: 12px;
+      padding: 13px 16px;
+    }
+
+    .roadmap-bullet {
+      font-size: 16px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .roadmap-text {
+      font-size: 13px;
+      color: var(--text-2);
+      line-height: 1.6;
+    }
+
+    /* ── REWRITER RESULTS ── */
+    .rewrite-section {
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px 22px;
+      margin-bottom: 14px;
+    }
+
+    .rewrite-section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+
+    .rewrite-section-title {
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--gold);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .rewrite-section-title::before {
+      content: '';
+      display: block;
+      width: 14px;
+      height: 2px;
+      background: linear-gradient(90deg, #f59e0b, #fbbf24);
+      border-radius: 2px;
+    }
+
+    .btn-copy {
+      padding: 6px 14px;
+      border-radius: 8px;
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      background: rgba(99, 102, 241, 0.08);
+      color: #a5b4fc;
+      font-size: 11px;
+      font-weight: 700;
+      font-family: inherit;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-copy:hover {
+      background: rgba(99, 102, 241, 0.2);
+      color: #fff;
+    }
+
+    .btn-copy.copied {
+      background: rgba(16, 185, 129, 0.12);
+      border-color: rgba(16, 185, 129, 0.3);
+      color: var(--emerald);
+    }
+
+    .rewrite-content {
+      font-size: 14px;
+      color: var(--text-2);
+      line-height: 1.75;
+      white-space: pre-wrap;
+    }
+
+    .rewrite-keywords {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .rewrite-bullet {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 14px;
+      color: var(--text-2);
+      line-height: 1.6;
+    }
+
+    .rewrite-bullet:last-child {
+      border-bottom: none;
+    }
+
+    .bullet-dot {
+      color: var(--gold);
+      font-size: 16px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .ats-tip {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 10px 14px;
+      background: rgba(99, 102, 241, 0.05);
+      border-radius: 10px;
+      margin-bottom: 8px;
+      font-size: 13px;
+      color: var(--text-2);
+      line-height: 1.6;
+    }
+
+    .ats-tip:last-child {
+      margin-bottom: 0;
+    }
+
+    .ats-tip-icon {
+      color: var(--indigo);
+      font-size: 15px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .cover-letter-box {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.06), rgba(139, 92, 246, 0.04));
+      border: 1px solid rgba(139, 92, 246, 0.2);
+      border-radius: 14px;
+      padding: 20px 22px;
+      font-size: 15px;
+      color: var(--text);
+      line-height: 1.8;
+      font-style: italic;
+    }
+
+    .rewrite-download-bar {
+      display: flex;
+      gap: 12px;
+      margin-top: 24px;
+      flex-wrap: wrap;
+    }
+
+    .btn-download {
+      flex: 1;
+      padding: 13px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1.5px solid var(--border);
+      color: var(--text-2);
+      font-size: 14px;
+      font-weight: 700;
+      font-family: inherit;
+      cursor: pointer;
+      transition: all 0.2s;
+      min-width: 140px;
+    }
+
+    .btn-download:hover {
+      border-color: var(--border-h);
+      color: var(--text);
+      background: rgba(99, 102, 241, 0.08);
+    }
+
+    /* Interview questions */
+    .q-item {
+      background: rgba(0, 0, 0, 0.3);
+      border: 1.5px solid var(--border);
+      border-radius: 16px;
+      padding: 0;
+      margin-bottom: 12px;
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+
+    .q-item:hover {
+      border-color: rgba(99, 102, 241, 0.3);
+    }
+
+    .q-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 18px 20px;
+      cursor: pointer;
+    }
+
+    .q-num {
+      flex-shrink: 0;
+      width: 30px;
+      height: 30px;
+      border-radius: 9px;
+      background: linear-gradient(135deg, var(--indigo), var(--violet));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .q-text {
+      font-size: 15px;
+      font-weight: 600;
+      line-height: 1.55;
+      flex: 1;
+      padding-top: 4px;
+    }
+
+    .q-meta-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 6px;
+      flex-wrap: wrap;
+    }
+
+    .q-expand-icon {
+      color: var(--text-3);
+      font-size: 18px;
+      transition: transform 0.3s;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .q-item.open .q-expand-icon {
+      transform: rotate(180deg);
+    }
+
+    .q-body {
+      display: none;
+      border-top: 1px solid var(--border);
+      padding: 16px 20px;
+    }
+
+    .q-item.open .q-body {
+      display: block;
+    }
+
+    .q-detail-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    @media(max-width:500px) {
+      .q-detail-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .practice-box {
+      margin-top: 16px;
+    }
+
+    .practice-box textarea {
+      min-height: 90px;
+      background: rgba(0, 0, 0, 0.45);
+      border: 1.5px solid rgba(99, 102, 241, 0.2);
+      margin-bottom: 10px;
+    }
+
+    .practice-box textarea:focus {
+      border-color: rgba(99, 102, 241, 0.5);
+    }
+
+    .btn-eval {
+      padding: 10px 20px;
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(139, 92, 246, 0.2));
+      border: 1.5px solid rgba(99, 102, 241, 0.4);
+      border-radius: 10px;
+      color: #a5b4fc;
+      font-size: 13px;
+      font-weight: 700;
+      font-family: inherit;
+      cursor: pointer;
+      transition: all 0.25s;
+    }
+
+    .btn-eval:hover {
+      background: rgba(99, 102, 241, 0.3);
+      color: #fff;
+    }
+
+    .btn-eval:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    .eval-result {
+      display: none;
+      margin-top: 14px;
+      background: rgba(16, 185, 129, 0.04);
+      border: 1px solid rgba(16, 185, 129, 0.15);
+      border-radius: 12px;
+      padding: 16px 18px;
+    }
+
+    .eval-score-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .eval-score-badge {
+      font-size: 22px;
+      font-weight: 900;
+      padding: 4px 14px;
+      border-radius: 10px;
+      line-height: 1.2;
+    }
+
+    .eval-label {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-2);
+    }
+
+    .eval-suggestions {
+      font-size: 13px;
+      color: var(--text-2);
+      line-height: 1.7;
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px solid var(--border);
+    }
+
+    .mini-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 8px;
+    }
+
+    .mini-tag {
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 10px;
+      font-weight: 600;
+    }
+
+    .mini-tag.g {
+      background: rgba(16, 185, 129, 0.12);
+      color: var(--emerald);
+    }
+
+    .mini-tag.r {
+      background: rgba(244, 63, 94, 0.12);
+      color: var(--rose);
+    }
+
+    /* Divider */
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 28px 0;
+    }
+
+    /* Batch tab */
+    #batch-results {
+      display: none;
+    }
+
+    .rank-card {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px 20px;
+      margin-bottom: 10px;
+      transition: border-color 0.2s;
+    }
+
+    .rank-card:hover {
+      border-color: rgba(99, 102, 241, 0.3);
+    }
+
+    .rank-medal {
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+
+    .rank-info {
+      flex: 1;
+    }
+
+    .rank-name {
+      font-size: 16px;
+      font-weight: 800;
+    }
+
+    .rank-reason {
+      font-size: 12px;
+      color: var(--text-2);
+      margin-top: 3px;
+    }
+
+    .rank-score {
+      font-size: 24px;
+      font-weight: 900;
+    }
+
+    .rank-bar-track {
+      height: 5px;
+      background: rgba(255, 255, 255, 0.06);
+      border-radius: 5px;
+      margin-top: 8px;
+      overflow: hidden;
+    }
+
+    .rank-bar {
+      height: 100%;
+      border-radius: 5px;
+      transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Toast */
+    #toast {
+      position: fixed;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: var(--rose);
+      color: #fff;
+      padding: 12px 28px;
+      border-radius: 14px;
+      font-size: 14px;
+      font-weight: 700;
+      z-index: 999;
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      max-width: 90vw;
+      text-align: center;
+      box-shadow: 0 8px 32px rgba(244, 63, 94, 0.4);
+    }
+
+    #toast.show {
+      transform: translateX(-50%) translateY(0);
+    }
+
+    #toast.success-toast {
+      background: var(--emerald);
+      box-shadow: 0 8px 32px rgba(16, 185, 129, 0.4);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 40px 24px 60px;
+      font-size: 13px;
+      color: var(--text-3);
+      position: relative;
+      z-index: 1;
+      border-top: 1px solid var(--border);
+    }
+
+    footer a {
+      color: var(--indigo);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-top: 14px;
+      flex-wrap: wrap;
+    }
+
+    .footer-trust {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+
+    .footer-trust-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: var(--text-3);
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--bg2);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: rgba(99, 102, 241, 0.4);
+      border-radius: 3px;
+    }
+
+    /* ── PRINT ── */
+    @media print {
+
+      .orb-wrap,
+      nav,
+      .adv-toggle,
+      .adv-body,
+      .tabs,
+      .role-grid,
+      .btn,
+      .btn-sm,
+      .btn-eval,
+      .upload-zone,
+      footer,
+      #form-single,
+      #form-batch,
+      #form-rewrite,
+      #loading,
+      #rewrite-loading,
+      .practice-box textarea,
+      .btn-eval,
+      .hero,
+      .section-wrapper {
+        display: none !important;
+      }
+
+      body,
+      html {
+        background: #fff !important;
+        color: #000 !important;
+      }
+
+      .card {
+        border: 1px solid #ddd !important;
+        box-shadow: none !important;
+        background: #fff !important;
+        break-inside: avoid;
+      }
+
+      .gauge-val,
+      .kpi-n {
+        -webkit-text-fill-color: #333 !important;
+      }
+
+      #results {
+        display: block !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="orb-wrap">
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+    <div class="orb orb3"></div>
+  </div>
+
+  <!-- NAV -->
+  <nav>
+    <a class="logo" href="#">
+      <div class="logo-icon">🧠</div>
+      <span class="logo-text">HireOS</span>
+    </a>
+    <div class="nav-right">
+      <span class="nav-pill">AI Live</span>
+      <button class="nav-premium-btn" id="navPayBtn" onclick="openPaywall()">👑 Go Premium — ₹199</button>
+      <span class="nav-crown" id="navCrown">👑 Premium Active</span>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-badge">
+      <div class="hero-badge-dot"></div>
+      Powered by Google Gemini 2.5
+    </div>
+    <h1>The Only AI That<br /><span class="grad">Actually Fixes</span><br />Your Resume</h1>
+    <p class="hero-sub">Other tools score your resume. HireOS <strong style="color:var(--text)">rewrites it</strong> —
+      tailored to each job you apply for. ATS-optimized, recruiter-approved, ready to paste.</p>
+    <div class="hero-cta-row">
+      <button class="btn-hero-pay" id="heroBtnPay" onclick="openPaywall()">⚡ Get Unlimited Access — ₹199</button>
+      <button class="btn-hero-free"
+        onclick="document.querySelector('.container').scrollIntoView({behavior:'smooth'})">Try Free Analysis ↓</button>
+    </div>
+    <div class="hero-kpis">
+      <div class="kpi">
+        <div class="kpi-n">6</div>
+        <div class="kpi-l">AI Features</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-n">₹199</div>
+        <div class="kpi-l">One Time, Forever</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-n">∞</div>
+        <div class="kpi-l">Resume Rewrites</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-n">60s</div>
+        <div class="kpi-l">Time to Results</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLEM / COMPARISON SECTION -->
+  <div class="section-wrapper">
+    <div class="problem-section">
+      <div class="section-eyebrow">Why HireOS</div>
+      <h2 class="section-title">Problems <span class="grad">Others Don't Solve</span></h2>
+      <div class="tbl-wrap">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th style="text-align:left">The Real Problem</th>
+              <th class="col-them">❌ Other Tools</th>
+              <th class="col-us">✅ HireOS</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="col-pain">Resume just gets scored, not improved</td>
+              <td class="col-them">Score only</td>
+              <td class="col-us">Full rewrite 🔧</td>
+            </tr>
+            <tr>
+              <td class="col-pain">Same resume sent to 100 different jobs</td>
+              <td class="col-them">Generic advice</td>
+              <td class="col-us">Job-specific version ✨</td>
+            </tr>
+            <tr>
+              <td class="col-pain">ATS tips like "add more keywords" (useless)</td>
+              <td class="col-them">Vague tips</td>
+              <td class="col-us">Exact keywords from your JD 🎯</td>
+            </tr>
+            <tr>
+              <td class="col-pain">Pay ₹99–500 per resume check</td>
+              <td class="col-them">Per-use pricing</td>
+              <td class="col-us">₹199 once, use forever 💰</td>
+            </tr>
+            <tr>
+              <td class="col-pain">No cover letter help</td>
+              <td class="col-them">Not included</td>
+              <td class="col-us">Tailored cover letter opening 📝</td>
+            </tr>
+            <tr>
+              <td class="col-pain">No interview prep</td>
+              <td class="col-them">Not included</td>
+              <td class="col-us">AI interview coach built-in 💬</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- HOW IT WORKS -->
+    <div class="problem-section">
+      <div class="section-eyebrow">How It Works</div>
+      <h2 class="section-title">3 Steps to Your <span class="grad-gold">Dream Job</span></h2>
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-num">1</div>
+          <div class="step-title">Upload Your Resume</div>
+          <div class="step-desc">Drop your existing PDF or TXT resume. Our AI parses every section instantly.</div>
+        </div>
+        <div class="step-card">
+          <div class="step-num">2</div>
+          <div class="step-title">Paste the Job Description</div>
+          <div class="step-desc">Copy-paste the exact JD from LinkedIn, Naukri, or any job board. We read every word.
+          </div>
+        </div>
+        <div class="step-card">
+          <div class="step-num">3</div>
+          <div class="step-title">Get Your Winning Resume</div>
+          <div class="step-desc">Receive a fully rewritten resume tailored to that role — summary, bullets, skills, ATS
+            keywords, cover letter. Copy and paste.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRICING -->
+    <div class="problem-section">
+      <div class="section-eyebrow">Pricing</div>
+      <h2 class="section-title">Simple. <span class="grad-gold">Honest. Forever.</span></h2>
+      <div class="pricing-wrapper">
+        <div class="pricing-card">
+          <div class="pricing-badge">🏆 LIFETIME ACCESS</div>
+          <div class="pricing-price grad-gold"><sup>₹</sup>199</div>
+          <div class="pricing-once">One-time payment · Use unlimited times · Forever</div>
+          <div class="pricing-features">
+            <div class="pricing-feat"><span class="feat-icon">✅</span> AI Resume Score & Analysis</div>
+            <div class="pricing-feat"><span class="feat-icon">✅</span> AI Resume Rewriter (job-specific)</div>
+            <div class="pricing-feat"><span class="feat-icon">✅</span> ATS Keywords & Tips</div>
+            <div class="pricing-feat"><span class="feat-icon">✅</span> Cover Letter Opening</div>
+            <div class="pricing-feat"><span class="feat-icon">✅</span> AI Interview Coach</div>
+            <div class="pricing-feat"><span class="feat-icon">✅</span> Batch Candidate Ranking (HR use)</div>
+            <div class="pricing-feat"><span class="feat-icon">✅</span> Unlimited rewrites — apply to 100 jobs</div>
+          </div>
+          <button class="btn-pay" id="pricingPayBtn" onclick="openPaywall()">⚡ Pay ₹199 — Unlock Everything</button>
+          <div class="pricing-trust">
+            <div class="trust-item">🔒 Razorpay Secure</div>
+            <div class="trust-item">🔁 No Subscription</div>
+            <div class="trust-item">⚡ Instant Access</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN TOOL CARD -->
+  <div class="container">
+    <div class="card">
+
+      <!-- TABS -->
+      <div class="tabs">
+        <button class="tab active" id="tab-single" onclick="switchTab('single')">🎯 Analyze Resume</button>
+        <button class="tab" id="tab-batch" onclick="switchTab('batch')">🏆 Rank Candidates</button>
+        <button class="tab" id="tab-rewrite" onclick="switchTab('rewrite')">🔧 AI Rewriter<span
+            class="tab-premium-badge">PREMIUM</span></button>
+      </div>
+
+      <!-- ═══ SINGLE ANALYZE TAB ═══ -->
+      <div id="panel-single" class="tab-panel active">
+        <div id="form-single">
+          <div class="card-title">Choose a role</div>
+          <div class="role-grid" id="roleGrid">
+            <div class="role-card" data-role="ml" onclick="selectRole(this)">
+              <div class="role-emoji">🤖</div>
+              <div>
+                <div class="role-name">ML / AI Engineer</div>
+                <div class="role-desc">LLMs, LangChain, RAG, Python, cloud deployment</div>
+              </div>
+            </div>
+            <div class="role-card" data-role="fullstack" onclick="selectRole(this)">
+              <div class="role-emoji">⚡</div>
+              <div>
+                <div class="role-name">Full-Stack Developer</div>
+                <div class="role-desc">React, Node.js, TypeScript, REST/GraphQL APIs</div>
+              </div>
+            </div>
+            <div class="role-card" data-role="frontend" onclick="selectRole(this)">
+              <div class="role-emoji">🎨</div>
+              <div>
+                <div class="role-name">Frontend Designer</div>
+                <div class="role-desc">UI/UX, Figma, CSS, design systems, performance</div>
+              </div>
+            </div>
+            <div class="role-card" data-role="custom" onclick="selectRole(this)">
+              <div class="role-emoji">✏️</div>
+              <div>
+                <div class="role-name">Custom Role</div>
+                <div class="role-desc">Paste your own job description below</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="field" id="jdField">
+            <div class="field-label">📋 Job Description</div>
+            <textarea id="jobDesc" placeholder="Select a preset role above — or write your own job description here…"
+              rows="5"></textarea>
+          </div>
+
+          <div class="field">
+            <div class="field-label">📄 Resume (PDF or TXT)</div>
+            <div class="upload-zone" id="dropZone">
+              <input type="file" id="resumeFile" accept=".pdf,.txt,.doc,.docx" />
+              <div class="upload-icon">📎</div>
+              <h3>Drop your resume here</h3>
+              <p>Supports PDF · DOCX · TXT · Max 5 MB</p>
+              <div class="file-pill" id="fileName" style="display:none"></div>
+            </div>
+          </div>
+
+          <div style="margin-bottom:22px;">
+            <div class="adv-toggle" id="advToggle" onclick="toggleAdv()">
+              <div class="adv-toggle-icon" id="advIcon">⚙</div>
+              Developer Settings (optional API key override)
+            </div>
+            <div class="adv-body" id="advBody">
+              <div class="field" style="margin-top:0">
+                <div class="field-label" style="margin-top:14px;">
+                  🔑 Custom Gemini API Key
+                  <a href="https://aistudio.google.com/app/apikey" target="_blank">Get free key →</a>
+                </div>
+                <input type="password" id="apiKey"
+                  placeholder="Leave blank to use the server key — or paste your own AIzaSy…" autocomplete="off" />
+              </div>
+            </div>
+          </div>
+
+          <button class="btn" id="analyzeBtn" onclick="analyzeSingle()">✨ Analyze My Resume</button>
+        </div>
+
+        <!-- Loading -->
+        <div id="loading">
+          <div class="spinner-wrap">
+            <div class="spinner"></div>
+            <div class="spinner-core"></div>
+          </div>
+          <h3 style="font-size:22px;font-weight:800;margin-bottom:6px">AI Agents Working…</h3>
+          <p style="color:var(--text-2);font-size:14px">Your resume is being analyzed by 4 specialized agents</p>
+          <div class="agent-steps">
+            <div class="agent-step" id="astep-1">
+              <div class="step-icon">📄</div> Parsing resume structure
+            </div>
+            <div class="agent-step" id="astep-2">
+              <div class="step-icon">🎯</div> Scoring against job requirements
+            </div>
+            <div class="agent-step" id="astep-3">
+              <div class="step-icon">💬</div> Generating interview questions
+            </div>
+            <div class="agent-step" id="astep-4">
+              <div class="step-icon">✅</div> Finalizing your report
+            </div>
+          </div>
+        </div>
+
+        <!-- Results -->
+        <div id="results">
+          <div class="result-topbar">
+            <div class="candidate-name" id="candidateName"></div>
+            <div style="display:flex;gap:10px;flex-wrap:wrap">
+              <button class="btn-sm" onclick="printReport()">🖨 Save PDF</button>
+              <button class="btn-sm" onclick="restart()">← Analyze Another</button>
+            </div>
+          </div>
+
+          <!-- Score gauge -->
+          <div class="gauge-grid">
+            <div class="gauge-wrap">
+              <svg class="gauge-svg" viewBox="0 0 170 170" width="170" height="170">
+                <circle class="gauge-bg" cx="85" cy="85" r="72" />
+                <circle class="gauge-fg" id="gaugeFg" cx="85" cy="85" r="72" stroke-dasharray="452"
+                  stroke-dashoffset="452" />
+              </svg>
+              <div class="gauge-center">
+                <div class="gauge-val" id="gaugeVal">0</div>
+                <div class="gauge-sub">/ 100 Match</div>
+              </div>
+            </div>
+            <div>
+              <div class="sec" style="margin-top:0">Hire Recommendation</div>
+              <div class="verdict-chip" id="verdictChip"></div>
+              <div class="sec">AI Reasoning</div>
+              <p id="reasoning" style="font-size:13px;color:var(--text-2);line-height:1.7"></p>
+            </div>
+          </div>
+
+          <hr />
+
+          <!-- Strengths & Gaps -->
+          <div class="two-col">
+            <div>
+              <div class="sec">✅ Strengths</div>
+              <div class="tags" id="strengths"></div>
+            </div>
+            <div>
+              <div class="sec">⚠️ Skill Gaps</div>
+              <div class="tags" id="gaps"></div>
+            </div>
+          </div>
+
+          <hr />
+
+          <!-- Improvements Roadmap -->
+          <div class="sec">🛠️ Resume Improvement Roadmap</div>
+          <div class="roadmap" id="improvements"></div>
+
+          <!-- Upsell banner -->
+          <div id="rewrite-upsell"
+            style="margin-top:24px;padding:20px 24px;background:linear-gradient(135deg,rgba(251,191,36,0.06),rgba(245,158,11,0.04));border:1px solid rgba(251,191,36,0.2);border-radius:16px;display:flex;align-items:center;gap:18px;flex-wrap:wrap;">
+            <div style="flex:1;min-width:200px">
+              <div style="font-size:15px;font-weight:800;margin-bottom:4px">🔧 Want us to fix all this automatically?
+              </div>
+              <div style="font-size:13px;color:var(--text-2);line-height:1.6">Upgrade to Premium — AI rewrites your
+                resume for this exact role. Copy & paste ready.</div>
+            </div>
+            <button onclick="switchTab('rewrite')"
+              style="padding:10px 22px;border-radius:10px;background:linear-gradient(135deg,#f59e0b,#fbbf24);border:none;color:#000;font-size:14px;font-weight:800;font-family:inherit;cursor:pointer;white-space:nowrap">✨
+              Rewrite My Resume →</button>
+          </div>
+
+          <hr />
+
+          <!-- Profile -->
+          <div class="sec">👤 Candidate Profile</div>
+          <div class="two-col">
+            <div class="info-box">
+              <div class="info-box-label">Experience</div>
+              <div class="info-box-val" id="exp"></div>
+            </div>
+            <div class="info-box">
+              <div class="info-box-label">Education</div>
+              <div class="info-box-val" id="edu"></div>
+            </div>
+          </div>
+          <div class="info-box" style="margin-top:14px">
+            <div class="info-box-label">Professional Summary</div>
+            <div class="info-box-val muted" id="summary"></div>
+          </div>
+          <div class="sec">🛠️ Skills Detected</div>
+          <div class="tags" id="skills"></div>
+
+          <hr />
+
+          <!-- Interview Questions -->
+          <div class="sec">💬 Interview Questions — Practice Mode</div>
+          <p style="font-size:12px;color:var(--text-3);margin-bottom:16px;">Click any question to expand it. Type your
+            answer and click <strong style="color:var(--indigo)">Evaluate</strong> for instant AI coaching.</p>
+          <div id="questions"></div>
+        </div>
+      </div>
+
+      <!-- ═══ BATCH RANK TAB ═══ -->
+      <div id="panel-batch" class="tab-panel">
+        <div id="form-batch">
+          <div class="field">
+            <div class="field-label">📋 Job Description for Ranking</div>
+            <textarea id="jobDescBatch" placeholder="Describe the role — all candidates will be ranked against this…"
+              rows="5"></textarea>
+          </div>
+          <div class="field">
+            <div class="field-label">📂 Upload Multiple Resumes</div>
+            <div class="upload-zone" id="dropZoneBatch">
+              <input type="file" id="resumeFiles" accept=".pdf,.txt,.doc,.docx" multiple />
+              <div class="upload-icon">📂</div>
+              <h3>Drop multiple resumes here</h3>
+              <p>Select all candidates at once · PDF or TXT</p>
+              <div class="file-pill" id="fileNameBatch" style="display:none"></div>
+            </div>
+          </div>
+          <div style="margin-bottom:22px;">
+            <div class="adv-toggle" id="advToggleBatch" onclick="toggleAdvBatch()">
+              <div class="adv-toggle-icon" id="advIconBatch">⚙</div>
+              Developer Settings
+            </div>
+            <div class="adv-body" id="advBodyBatch">
+              <div class="field" style="margin-top:14px">
+                <div class="field-label">🔑 Custom Gemini API Key
+                  <a href="https://aistudio.google.com/app/apikey" target="_blank">Get free key →</a>
+                </div>
+                <input type="password" id="apiKeyBatch" placeholder="Leave blank to use server key…"
+                  autocomplete="off" />
+              </div>
+            </div>
+          </div>
+          <button class="btn" id="rankBtn" onclick="analyzeBatch()">🏆 Rank All Candidates</button>
+        </div>
+        <div id="batch-loading" style="display:none;text-align:center;padding:60px 20px;">
+          <div class="spinner-wrap" style="margin-bottom:28px">
+            <div class="spinner"></div>
+            <div class="spinner-core"></div>
+          </div>
+          <h3 style="font-size:22px;font-weight:800;margin-bottom:6px">Ranking Candidates…</h3>
+          <p style="color:var(--text-2);font-size:14px">Each resume is being analyzed and scored simultaneously</p>
+        </div>
+        <div id="batch-results"></div>
+      </div>
+
+      <!-- ═══ AI REWRITER TAB (PREMIUM) ═══ -->
+      <div id="panel-rewrite" class="tab-panel">
+
+        <!-- Paywall (shown to non-premium users) -->
+        <div id="rewrite-paywall" class="paywall">
+          <div class="paywall-icon">🔧</div>
+          <div class="paywall-title">AI Resume Rewriter</div>
+          <div class="paywall-sub">This is the feature that gets you the job. We don't just tell you what's wrong — we
+            <strong style="color:var(--text)">rewrite your entire resume</strong> to perfectly match any job description
+            you paste.</div>
+          <div class="paywall-feats">
+            <div class="paywall-feat"><span class="paywall-feat-icon">✅</span> Rewrites Professional Summary with JD
+              keywords</div>
+            <div class="paywall-feat"><span class="paywall-feat-icon">✅</span> Reorders Skills by relevance to the role
+            </div>
+            <div class="paywall-feat"><span class="paywall-feat-icon">✅</span> Generates 5 powerful achievement bullets
+            </div>
+            <div class="paywall-feat"><span class="paywall-feat-icon">✅</span> Exact ATS keywords to add (from YOUR JD)
+            </div>
+            <div class="paywall-feat"><span class="paywall-feat-icon">✅</span> Tailored Cover Letter opening paragraph
+            </div>
+            <div class="paywall-feat"><span class="paywall-feat-icon">✅</span> Use unlimited times, forever</div>
+          </div>
+          <div class="paywall-price grad-gold">₹199</div>
+          <div class="paywall-price-sub">One-time payment · No subscription · Instant access</div>
+          <button class="btn-paywall" id="paywallBtn" onclick="triggerPayment()">⚡ Unlock — Pay ₹199</button>
+          <div class="paywall-trust">🔒 Secured by Razorpay · UPI · Cards · Net Banking accepted</div>
+        </div>
+
+        <!-- Rewriter Form (shown to premium users) -->
+        <div id="form-rewrite" style="display:none">
+          <div
+            style="display:flex;align-items:center;gap:10px;margin-bottom:28px;padding:14px 18px;background:rgba(251,191,36,0.06);border:1px solid rgba(251,191,36,0.2);border-radius:14px;">
+            <span style="font-size:20px">👑</span>
+            <div>
+              <div style="font-size:14px;font-weight:800;color:var(--gold)">Premium Access Active</div>
+              <div style="font-size:12px;color:var(--text-2)">Unlimited rewrites — apply to as many jobs as you want
+              </div>
+            </div>
+          </div>
+
+          <div class="card-title">AI Resume Rewriter</div>
+
+          <div class="field">
+            <div class="field-label">📄 Your Current Resume (PDF or TXT)</div>
+            <div class="upload-zone" id="dropZoneRewrite">
+              <input type="file" id="resumeFileRewrite" accept=".pdf,.txt,.doc,.docx" />
+              <div class="upload-icon">📎</div>
+              <h3>Drop your resume here</h3>
+              <p>We'll rewrite it for your target role · PDF or TXT</p>
+              <div class="file-pill" id="fileNameRewrite" style="display:none"></div>
+            </div>
+          </div>
+
+          <div class="field">
+            <div class="field-label">📋 Target Job Description</div>
+            <textarea id="jobDescRewrite"
+              placeholder="Paste the full job description from LinkedIn, Naukri, or any job board. The more detail, the better the rewrite."
+              rows="7"></textarea>
+          </div>
+
+          <div style="margin-bottom:22px;">
+            <div class="adv-toggle" id="advToggleRewrite" onclick="toggleAdvRewrite()">
+              <div class="adv-toggle-icon" id="advIconRewrite">⚙</div>
+              Developer Settings
+            </div>
+            <div class="adv-body" id="advBodyRewrite">
+              <div class="field" style="margin-top:14px">
+                <div class="field-label">🔑 Custom Gemini API Key
+                  <a href="https://aistudio.google.com/app/apikey" target="_blank">Get free key →</a>
+                </div>
+                <input type="password" id="apiKeyRewrite" placeholder="Leave blank to use server key…"
+                  autocomplete="off" />
+              </div>
+            </div>
+          </div>
+
+          <button class="btn-gold" id="rewriteBtn" onclick="rewriteResume()">🔧 Rewrite My Resume for This Role</button>
+        </div>
+
+        <!-- Rewrite Loading -->
+        <div id="rewrite-loading">
+          <div class="spinner-wrap">
+            <div class="spinner-gold"></div>
+            <div class="spinner-core"></div>
+          </div>
+          <h3 style="font-size:22px;font-weight:800;margin-bottom:6px">AI is Rewriting Your Resume…</h3>
+          <p style="color:var(--text-2);font-size:14px">Crafting tailored content for your target role</p>
+          <div class="agent-steps">
+            <div class="agent-step" id="rstep-1">
+              <div class="step-icon">📄</div> Reading your resume
+            </div>
+            <div class="agent-step" id="rstep-2">
+              <div class="step-icon">🎯</div> Analysing job requirements
+            </div>
+            <div class="agent-step" id="rstep-3">
+              <div class="step-icon">✍️</div> Rewriting summary & bullets
+            </div>
+            <div class="agent-step" id="rstep-4">
+              <div class="step-icon">🔑</div> Extracting ATS keywords
+            </div>
+            <div class="agent-step" id="rstep-5">
+              <div class="step-icon">📝</div> Writing cover letter opening
+            </div>
+          </div>
+        </div>
+
+        <!-- Rewrite Results -->
+        <div id="rewrite-results">
+          <div class="result-topbar">
+            <div style="font-size:22px;font-weight:900">✨ Your Rewritten Resume</div>
+            <button class="btn-sm" onclick="restartRewrite()">← Rewrite Another</button>
+          </div>
+
+          <p style="font-size:13px;color:var(--text-2);margin-bottom:24px;line-height:1.6">Your resume has been
+            rewritten to perfectly match this role. Copy each section and paste into your resume document. 🎉</p>
+
+          <!-- Professional Summary -->
+          <div class="rewrite-section" id="rw-summary-section">
+            <div class="rewrite-section-header">
+              <div class="rewrite-section-title">Professional Summary</div>
+              <button class="btn-copy" onclick="copySection('rw-summary-text', this)">📋 Copy</button>
+            </div>
+            <div class="rewrite-content" id="rw-summary-text"></div>
+          </div>
+
+          <!-- Skills -->
+          <div class="rewrite-section" id="rw-skills-section">
+            <div class="rewrite-section-header">
+              <div class="rewrite-section-title">Skills (Reordered by Relevance)</div>
+              <button class="btn-copy" onclick="copySection('rw-skills-text', this)">📋 Copy</button>
+            </div>
+            <div class="rewrite-keywords" id="rw-skills-text"></div>
+          </div>
+
+          <!-- Achievement Bullets -->
+          <div class="rewrite-section" id="rw-bullets-section">
+            <div class="rewrite-section-header">
+              <div class="rewrite-section-title">Achievement Bullets (5 Power Statements)</div>
+              <button class="btn-copy" onclick="copySection('rw-bullets-text', this)">📋 Copy</button>
+            </div>
+            <div id="rw-bullets-text"></div>
+          </div>
+
+          <!-- ATS Keywords -->
+          <div class="rewrite-section" id="rw-ats-section">
+            <div class="rewrite-section-header">
+              <div class="rewrite-section-title">🎯 ATS Keywords to Add</div>
+              <button class="btn-copy" onclick="copySection('rw-ats-text', this)">📋 Copy</button>
+            </div>
+            <div class="rewrite-keywords" id="rw-ats-text"></div>
+          </div>
+
+          <!-- ATS Tips -->
+          <div class="rewrite-section" id="rw-tips-section">
+            <div class="rewrite-section-header">
+              <div class="rewrite-section-title">💡 ATS Optimization Tips</div>
+            </div>
+            <div id="rw-tips-text"></div>
+          </div>
+
+          <!-- Cover Letter -->
+          <div class="rewrite-section" id="rw-cover-section">
+            <div class="rewrite-section-header">
+              <div class="rewrite-section-title">📝 Cover Letter Opening</div>
+              <button class="btn-copy" onclick="copySection('rw-cover-text', this)">📋 Copy</button>
+            </div>
+            <div class="cover-letter-box" id="rw-cover-text"></div>
+          </div>
+
+          <!-- Download Bar -->
+          <div class="rewrite-download-bar">
+            <button class="btn-download" onclick="downloadRewrite()">⬇️ Download as .txt</button>
+            <button class="btn-download" onclick="printReport()">🖨 Save as PDF</button>
+            <button class="btn-download" onclick="restartRewrite()">🔄 Rewrite for Another Role</button>
+          </div>
+        </div>
+
+      </div><!-- end rewrite tab -->
+
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div>Built by <strong>Saurabh Gaur</strong> using Google Gemini 2.5 + LangGraph · <a
+        href="https://github.com/DEVsaurabhgaur/HireOS_Langgraph" target="_blank">View on GitHub</a></div>
+    <div class="footer-links">
+      <a href="https://github.com/DEVsaurabhgaur" target="_blank">GitHub Profile</a>
+      <a href="https://linkedin.com/in/DEVsaurabhgaur" target="_blank">LinkedIn</a>
+      <a href="https://github.com/DEVsaurabhgaur/HireOS_Langgraph" target="_blank">HireOS Repo</a>
+      <a href="#" onclick="openLegal('privacy');return false;">Privacy Policy</a>
+      <a href="#" onclick="openLegal('terms');return false;">Terms of Service</a>
+      <a href="#" onclick="openLegal('refund');return false;">Refund Policy</a>
+    </div>
+    <div class="footer-trust">
+      <div class="footer-trust-item">🔒 Payments secured by Razorpay</div>
+      <div class="footer-trust-item">🤖 Powered by Google Gemini 2.5</div>
+      <div class="footer-trust-item">🇮🇳 Made in India</div>
+    </div>
+    <div style="margin-top:14px;font-size:12px;color:var(--text-2);">
+      © 2025 HireOS by Saurabh Gaur. All rights reserved. | Contact: <a href="mailto:devsaurabhgaur@gmail.com" style="color:var(--emerald);">devsaurabhgaur@gmail.com</a>
+    </div>
+  </footer>
+
+  <div id="toast"></div>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <!-- LEGAL MODALS                                                          -->
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <div id="legalModal" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.8);backdrop-filter:blur(8px);overflow-y:auto;">
+    <div style="max-width:720px;margin:40px auto;background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:40px;position:relative;">
+      <button onclick="closeLegal()" style="position:absolute;top:18px;right:18px;background:none;border:none;color:var(--text-1);font-size:24px;cursor:pointer;line-height:1;">✕</button>
+      <div id="legalContent"></div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <!-- SUPPORT CHATBOT                                                        -->
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <style>
+    /* ── Support Chat Widget ── */
+    #chatBtn {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 8888;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      border: none;
+      cursor: pointer;
+      font-size: 26px;
+      box-shadow: 0 8px 32px rgba(99, 102, 241, 0.55), 0 0 0 0 rgba(99,102,241,0.4);
+      transition: transform .25s cubic-bezier(.34,1.56,.64,1), box-shadow .25s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: chatPulse 3s ease-in-out infinite;
+    }
+    @keyframes chatPulse {
+      0%, 100% { box-shadow: 0 8px 32px rgba(99,102,241,0.55), 0 0 0 0 rgba(99,102,241,0.4); }
+      50% { box-shadow: 0 8px 32px rgba(99,102,241,0.55), 0 0 0 10px rgba(99,102,241,0); }
+    }
+    #chatBtn:hover {
+      transform: scale(1.12) translateY(-2px);
+      box-shadow: 0 16px 48px rgba(99, 102, 241, 0.7);
+      animation: none;
+    }
+    #chatBadge {
+      position: absolute;
+      top: -4px;
+      right: -4px;
+      background: linear-gradient(135deg, #ef4444, #f43f5e);
+      color: #fff;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      font-size: 11px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      border: 2px solid #060610;
+      animation: badgeBounce .4s cubic-bezier(.34,1.56,.64,1);
+    }
+    @keyframes badgeBounce {
+      from { transform: scale(0); }
+      to { transform: scale(1); }
+    }
+    #chatBox {
+      display: none;
+      position: fixed;
+      bottom: 104px;
+      right: 28px;
+      z-index: 8888;
+      width: 380px;
+      background: rgba(10, 10, 26, 0.92);
+      backdrop-filter: blur(32px) saturate(1.8);
+      border: 1px solid rgba(139, 92, 246, 0.25);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 32px 80px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255,255,255,0.04) inset;
+      flex-direction: column;
+      transform-origin: bottom right;
+    }
+    #chatBox.open {
+      display: flex;
+      animation: chatSlideIn .3s cubic-bezier(.34,1.56,.64,1);
+    }
+    @keyframes chatSlideIn {
+      from { opacity: 0; transform: scale(0.85) translateY(16px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+    #chatHeader {
+      background: linear-gradient(135deg, rgba(99,102,241,0.9), rgba(139,92,246,0.9));
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+    }
+    #chatHeader::before {
+      content: '';
+      position: absolute;
+      top: -40px;
+      right: -20px;
+      width: 120px;
+      height: 120px;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .chat-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.2);
+      border: 2px solid rgba(255,255,255,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+    .chat-header-info {
+      flex: 1;
+    }
+    .chat-header-name {
+      font-weight: 800;
+      font-size: 15px;
+      color: #fff;
+      letter-spacing: -0.2px;
+    }
+    .chat-header-status {
+      font-size: 11px;
+      color: rgba(255,255,255,0.75);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin-top: 2px;
+    }
+    .chat-header-status::before {
+      content: '';
+      width: 7px;
+      height: 7px;
+      background: #10b981;
+      border-radius: 50%;
+      animation: blink 2s infinite;
+    }
+    #chatClose {
+      background: rgba(255,255,255,0.15);
+      border: none;
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+      line-height: 1;
+      padding: 0;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background .2s;
+      flex-shrink: 0;
+    }
+    #chatClose:hover { background: rgba(255,255,255,0.3); }
+    #chatMessages {
+      height: 300px;
+      overflow-y: auto;
+      padding: 16px 16px 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(139,92,246,0.3) transparent;
+    }
+    #chatMessages::-webkit-scrollbar { width: 4px; }
+    #chatMessages::-webkit-scrollbar-thumb { background: rgba(139,92,246,0.3); border-radius: 2px; }
+    .chat-msg-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .chat-msg-wrap.user-wrap { align-items: flex-end; }
+    .chat-msg-wrap.bot-wrap { align-items: flex-start; }
+    .chat-msg {
+      max-width: 85%;
+      padding: 10px 14px;
+      border-radius: 16px;
+      font-size: 13px;
+      line-height: 1.55;
+      animation: msgIn .25s cubic-bezier(.34,1.56,.64,1);
+    }
+    @keyframes msgIn {
+      from { opacity: 0; transform: scale(0.85); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    .chat-bot {
+      background: rgba(99, 102, 241, 0.12);
+      border: 1px solid rgba(99, 102, 241, 0.2);
+      color: #eef2ff;
+      align-self: flex-start;
+      border-bottom-left-radius: 4px;
+    }
+    .chat-user {
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      color: #fff;
+      align-self: flex-end;
+      border-bottom-right-radius: 4px;
+      box-shadow: 0 4px 16px rgba(99,102,241,0.35);
+    }
+    .chat-time {
+      font-size: 10px;
+      color: rgba(148, 163, 184, 0.5);
+      padding: 0 4px;
+    }
+    /* Typing indicator */
+    .chat-typing-wrap {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      animation: msgIn .25s ease;
+    }
+    .typing-bubble {
+      background: rgba(99, 102, 241, 0.12);
+      border: 1px solid rgba(99, 102, 241, 0.2);
+      border-radius: 16px;
+      border-bottom-left-radius: 4px;
+      padding: 12px 16px;
+      display: flex;
+      gap: 5px;
+      align-items: center;
+    }
+    .typing-dot {
+      width: 7px;
+      height: 7px;
+      background: rgba(139, 92, 246, 0.7);
+      border-radius: 50%;
+      animation: typingBounce 1.2s ease-in-out infinite;
+    }
+    .typing-dot:nth-child(2) { animation-delay: .2s; }
+    .typing-dot:nth-child(3) { animation-delay: .4s; }
+    @keyframes typingBounce {
+      0%, 60%, 100% { transform: translateY(0); opacity: 0.5; }
+      30% { transform: translateY(-6px); opacity: 1; }
+    }
+    /* Quick reply chips */
+    #chatQuickBtns {
+      padding: 4px 14px 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .qbtn {
+      background: rgba(99, 102, 241, 0.08);
+      border: 1px solid rgba(99, 102, 241, 0.25);
+      color: #a5b4fc;
+      border-radius: 20px;
+      padding: 5px 12px;
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all .2s;
+      font-family: inherit;
+      letter-spacing: 0.1px;
+    }
+    .qbtn:hover {
+      background: rgba(99, 102, 241, 0.2);
+      border-color: rgba(139, 92, 246, 0.5);
+      color: #fff;
+      transform: translateY(-1px);
+    }
+    /* Input row */
+    #chatInputRow {
+      display: flex;
+      gap: 8px;
+      padding: 10px 14px 14px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    #chatInput {
+      flex: 1;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 10px 14px;
+      color: #eef2ff;
+      font-size: 13px;
+      font-family: inherit;
+      outline: none;
+      transition: border-color .2s, background .2s;
+    }
+    #chatInput::placeholder { color: rgba(148,163,184,0.5); }
+    #chatInput:focus {
+      border-color: rgba(139, 92, 246, 0.5);
+      background: rgba(255, 255, 255, 0.07);
+    }
+    #chatSend {
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      border: none;
+      border-radius: 12px;
+      padding: 10px 16px;
+      color: #fff;
+      cursor: pointer;
+      font-size: 17px;
+      transition: all .2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    #chatSend:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(99,102,241,0.45);
+    }
+    #chatSend:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+    /* Powered by strip */
+    .chat-footer {
+      padding: 6px 14px 10px;
+      font-size: 10px;
+      color: rgba(100,116,139,0.6);
+      text-align: center;
+      letter-spacing: 0.3px;
+    }
+  </style>
+
+  <!-- Chatbot Button -->
+  <button id="chatBtn" onclick="toggleChat()" title="Support Chat">
+    <span id="chatIcon">💬</span>
+    <div id="chatBadge" style="display:none;">1</div>
+  </button>
+
+  <!-- Chatbot Window -->
+  <div id="chatBox">
+    <!-- Header -->
+    <div id="chatHeader">
+      <div class="chat-avatar">🤖</div>
+      <div class="chat-header-info">
+        <div class="chat-header-name">HireOS Support</div>
+        <div class="chat-header-status">AI assistant · Usually replies instantly</div>
+      </div>
+      <button id="chatClose" onclick="toggleChat()" aria-label="Close chat">✕</button>
+    </div>
+
+    <!-- Messages -->
+    <div id="chatMessages">
+      <div class="chat-msg-wrap bot-wrap">
+        <div class="chat-msg chat-bot">👋 Hi! I'm HireOS's AI assistant. Ask me anything about features, pricing, or how it works!</div>
+        <div class="chat-time">Just now</div>
+      </div>
+    </div>
+
+    <!-- Quick replies -->
+    <div id="chatQuickBtns">
+      <button class="qbtn" onclick="askQuick('How does HireOS work?')">How does it work?</button>
+      <button class="qbtn" onclick="askQuick('What formats are supported?')">Supported formats?</button>
+      <button class="qbtn" onclick="askQuick('What is included in Premium?')">Premium features?</button>
+      <button class="qbtn" onclick="askQuick('What is the refund policy?')">Refund policy?</button>
+      <button class="qbtn" onclick="askQuick('How do I contact support?')">Contact support</button>
+    </div>
+
+    <!-- Input row -->
+    <div id="chatInputRow">
+      <input id="chatInput" type="text" placeholder="Ask anything about HireOS…" onkeydown="if(event.key==='Enter')sendChat()" />
+      <button id="chatSend" onclick="sendChat()" aria-label="Send message">➤</button>
+    </div>
+
+    <div class="chat-footer">Powered by Google Gemini · HireOS AI</div>
+  </div>
+
+
+  <script>
+    const API = '';  // Same origin — served by FastAPI
+
+    // ─── RAZORPAY CONFIG — loaded from backend, never hardcoded ───────────────
+    // Key ID is fetched from /api/config so it NEVER appears in source code.
+    // Anyone who clones this repo cannot see or misuse the live key.
+    let RAZORPAY_KEY = '';   // populated by loadConfig() below
+    let PRICE_INR = 199;     // default, overridden by /api/config response
+
+    async function loadConfig() {
+      try {
+        const res = await fetch(`${API}/api/config`);
+        if (!res.ok) return;
+        const cfg = await res.json();
+        RAZORPAY_KEY = cfg.razorpay_key || '';
+        PRICE_INR    = cfg.price || 199;
+      } catch (e) {
+        console.warn('Config not loaded — payment unavailable');
+      }
+    }
+    loadConfig(); // fire immediately on page load
+
+    // ─── PREMIUM STATE ─────────────────────────────────────────────────────────
+    const PREMIUM_KEY = 'hireos_premium_v1';
+
+    // ─── OWNER BYPASS (hash-protected) ────────────────────────────────────────
+    // Secret is NEVER stored in code — only its SHA-256 hash.
+    // Creator link: https://hire-os-langgraph.vercel.app/?owner=HireOS_Saurabh_Owner_2025
+    const OWNER_HASH = '5a2e455322b6eeeb0abe66241a8c51507aafc2929f3c9cc20d75f9bfe4d7c2fd';
+
+    async function sha256(msg) {
+      const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(msg));
+      return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
+    }
+
+    function unlockOwner() {
+      localStorage.setItem(PREMIUM_KEY, JSON.stringify({
+        paymentId: 'OWNER_BYPASS',
+        owner: 'saurabhgaur122000@gmail.com',
+        ts: Date.now()
+      }));
+      updatePremiumUI();
+      toast('👑 Owner Access Activated! Welcome, Saurabh!', 'success');
+    }
+
+    // Auto-check URL param on page load (async hash comparison)
+    (async function checkOwnerParam() {
+      const params = new URLSearchParams(window.location.search);
+      const ownerParam = params.get('owner');
+      if (ownerParam) {
+        const hash = await sha256(ownerParam);
+        if (hash === OWNER_HASH) {
+          unlockOwner();
+          window.history.replaceState({}, '', window.location.pathname);
+        }
+      }
+    })();
+
+    function isPremium() {
+      return !!localStorage.getItem(PREMIUM_KEY);
+    }
+
+    function activatePremium(paymentId) {
+      localStorage.setItem(PREMIUM_KEY, JSON.stringify({ paymentId, ts: Date.now() }));
+      updatePremiumUI();
+      toast('🎉 Premium Activated! Unlimited rewrites unlocked.', 'success');
+    }
+
+    function updatePremiumUI() {
+      const premium = isPremium();
+      // Nav buttons
+      document.getElementById('navPayBtn').style.display = premium ? 'none' : '';
+      document.getElementById('navCrown').style.display = premium ? '' : 'none';
+      // Hero
+      const heroPay = document.getElementById('heroBtnPay');
+      if (heroPay) heroPay.style.display = premium ? 'none' : '';
+      // Pricing card
+      const pricingPayBtn = document.getElementById('pricingPayBtn');
+      if (pricingPayBtn) {
+        if (premium) {
+          pricingPayBtn.textContent = '✅ Premium Already Active';
+          pricingPayBtn.style.background = 'rgba(16,185,129,0.2)';
+          pricingPayBtn.style.color = 'var(--emerald)';
+          pricingPayBtn.style.border = '1px solid rgba(16,185,129,0.3)';
+          pricingPayBtn.style.boxShadow = 'none';
+          pricingPayBtn.onclick = null;
+        }
+      }
+      // Rewriter tab paywall
+      if (premium) {
+        document.getElementById('rewrite-paywall').style.display = 'none';
+        document.getElementById('form-rewrite').style.display = 'block';
+      } else {
+        document.getElementById('rewrite-paywall').style.display = 'block';
+        document.getElementById('form-rewrite').style.display = 'none';
+      }
+    }
+
+    function openPaywall() {
+      if (isPremium()) {
+        switchTab('rewrite');
+        return;
+      }
+      switchTab('rewrite');
+      document.querySelector('.container').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // ─── RAZORPAY PAYMENT ──────────────────────────────────────────────────────
+    function triggerPayment() {
+      if (!RAZORPAY_KEY) {
+        toast('Payment gateway is loading. Please try again in a moment.', 'error');
+        loadConfig();
+        return;
+      }
+      const options = {
+        key: RAZORPAY_KEY,
+        amount: PRICE_INR * 100,       // in paise
+        currency: 'INR',
+        name: 'HireOS',
+        description: 'Lifetime Premium Access — Unlimited AI Resume Rewrites',
+        image: '',
+        handler: function (response) {
+          activatePremium(response.razorpay_payment_id);
+          switchTab('rewrite');
+        },
+        prefill: { name: '', email: '', contact: '' },
+        notes: { product: 'HireOS Premium' },
+        theme: { color: '#6366f1' },
+        modal: {
+          ondismiss: function () {
+            toast('Payment cancelled. You can try again anytime.', 'info');
+          }
+        }
+      };
+      try {
+        const rzp = new Razorpay(options);
+        rzp.on('payment.failed', function (response) {
+          toast('Payment failed: ' + (response.error.description || 'Unknown error'), 'error');
+        });
+        rzp.open();
+      } catch (e) {
+        toast('Payment gateway not available. Please check your internet connection.', 'error');
+      }
+    }
+
+    // ─── PRESET ROLE JDs ───────────────────────────────────────────────────────
+    const ROLE_JDS = {
+      ml: `Senior ML / AI Engineer
+
+We're looking for an experienced ML engineer to build and deploy production LLM systems.
+
+Requirements:
+- 4+ years in machine learning or AI engineering
+- Strong Python skills (NumPy, Pandas, PyTorch / TensorFlow)
+- Experience building LLM-based applications (LangChain, LlamaIndex, RAG pipelines)
+- Familiarity with vector databases (Pinecone, Weaviate, FAISS)
+- Cloud deployment experience (GCP, AWS or Azure)
+- FastAPI / Flask for serving ML models
+- Bonus: LangGraph, Agents, fine-tuning
+
+Responsibilities:
+- Design and deploy multi-agent AI pipelines
+- Optimize LLM inference and retrieval systems
+- Collaborate with product and data teams`,
+
+      fullstack: `Full-Stack Software Engineer
+
+We're hiring a versatile full-stack engineer to build and scale our web platform.
+
+Requirements:
+- 3+ years building production web applications
+- React.js / Next.js frontend (TypeScript strongly preferred)
+- Node.js / Express or similar backend
+- REST and GraphQL API design
+- PostgreSQL or MongoDB database experience
+- Git, CI/CD pipelines, Docker
+- Bonus: AWS, Redis, testing (Jest, Cypress)
+
+Responsibilities:
+- Build new features end-to-end from design to deployment
+- Maintain and improve system reliability and performance
+- Work closely with designers and product managers`,
+
+      frontend: `Senior Frontend Engineer / UI Designer
+
+Join our design-driven team to craft exceptional user interfaces.
+
+Requirements:
+- 3+ years of frontend engineering experience
+- Expert-level HTML, CSS, and JavaScript / TypeScript
+- React.js with performance optimization expertise
+- Experience with design tools like Figma
+- Strong eye for design: typography, color theory, motion
+- Accessibility (WCAG) and responsive design best practices
+- Animation libraries (Framer Motion, GSAP) a plus
+
+Responsibilities:
+- Own the visual and interaction quality of our products
+- Collaborate with product designers to pixel-perfect implementation
+- Build and maintain a component design system`,
+
+      custom: ''
+    };
+
+    /* ── Role selection ── */
+    function selectRole(el) {
+      document.querySelectorAll('.role-card').forEach(c => c.classList.remove('selected'));
+      el.classList.add('selected');
+      const role = el.dataset.role;
+      const jd = ROLE_JDS[role];
+      const ta = document.getElementById('jobDesc');
+      if (role === 'custom') {
+        ta.value = '';
+        ta.placeholder = 'Describe the role requirements…';
+        ta.focus();
+      } else {
+        ta.value = jd;
+      }
+    }
+
+    /* ── Upload zones ── */
+    function setupUploadZone(inputId, zoneId, labelId, multiple = false) {
+      const input = document.getElementById(inputId);
+      const zone = document.getElementById(zoneId);
+      const label = document.getElementById(labelId);
+      if (!input || !zone) return;
+      input.addEventListener('change', () => updateFileUI(input, zone, label, multiple));
+      ['dragover', 'dragenter'].forEach(e => zone.addEventListener(e, ev => { ev.preventDefault(); zone.classList.add('drag'); }));
+      ['dragleave', 'drop'].forEach(e => zone.addEventListener(e, ev => { ev.preventDefault(); zone.classList.remove('drag'); }));
+      zone.addEventListener('drop', ev => {
+        const files = ev.dataTransfer.files;
+        if (files.length) {
+          const dt = new DataTransfer();
+          if (multiple) { Array.from(files).forEach(f => dt.items.add(f)); }
+          else { dt.items.add(files[0]); }
+          input.files = dt.files;
+          updateFileUI(input, zone, label, multiple);
+        }
+      });
+    }
+
+    function updateFileUI(input, zone, label, multiple = false) {
+      if (input.files.length) {
+        zone.classList.add('has-file');
+        label.style.display = 'inline-flex';
+        label.innerHTML = multiple
+          ? `📂 ${input.files.length} file(s) selected`
+          : `📄 ${input.files[0].name}`;
+      }
+    }
+
+    setupUploadZone('resumeFile', 'dropZone', 'fileName');
+    setupUploadZone('resumeFiles', 'dropZoneBatch', 'fileNameBatch', true);
+    setupUploadZone('resumeFileRewrite', 'dropZoneRewrite', 'fileNameRewrite');
+
+    /* ── Advanced settings toggles ── */
+    function toggleAdv() { document.getElementById('advToggle').classList.toggle('open'); document.getElementById('advBody').classList.toggle('open'); }
+    function toggleAdvBatch() { document.getElementById('advToggleBatch').classList.toggle('open'); document.getElementById('advBodyBatch').classList.toggle('open'); }
+    function toggleAdvRewrite() { document.getElementById('advToggleRewrite').classList.toggle('open'); document.getElementById('advBodyRewrite').classList.toggle('open'); }
+
+    /* ── Tab switch ── */
+    function switchTab(t) {
+      ['single', 'batch', 'rewrite'].forEach(id => {
+        document.getElementById(`tab-${id}`).classList.toggle('active', t === id);
+        document.getElementById(`panel-${id}`).classList.toggle('active', t === id);
+      });
+    }
+
+    /* ── Agent step animation ── */
+    function startSteps(prefix, count) {
+      const ids = Array.from({ length: count }, (_, i) => `${prefix}${i + 1}`);
+      ids.forEach(id => document.getElementById(id).classList.remove('active', 'done'));
+      let i = 0;
+      document.getElementById(ids[0]).classList.add('active');
+      const timer = setInterval(() => {
+        if (i < ids.length) {
+          const el = document.getElementById(ids[i]);
+          el.classList.remove('active');
+          el.classList.add('done');
+          el.querySelector('.step-icon').textContent = '✅';
+          i++;
+          if (i < ids.length) document.getElementById(ids[i]).classList.add('active');
+        } else { clearInterval(timer); }
+      }, 5000);
+      return timer;
+    }
+
+    /* ── Analyze Single ── */
+    let _currentJD = '';
+    let _stepTimer;
+
+    async function analyzeSingle() {
+      const apiKey = document.getElementById('apiKey').value.trim();
+      const jobDesc = document.getElementById('jobDesc').value.trim();
+      const file = document.getElementById('resumeFile').files[0];
+
+      if (!jobDesc) return toast('Please select a role or enter a job description');
+      if (!file) return toast('Please upload your resume file');
+
+      _currentJD = jobDesc;
+      document.getElementById('form-single').style.display = 'none';
+      document.getElementById('results').style.display = 'none';
+      document.getElementById('loading').style.display = 'block';
+      _stepTimer = startSteps('astep-', 4);
+
+      const fd = new FormData();
+      if (apiKey) fd.append('api_key', apiKey);
+      fd.append('job_description', jobDesc);
+      fd.append('resume', file);
+
+      try {
+        const res = await fetch(`${API}/api/analyze`, { method: 'POST', body: fd });
+        const data = await res.json();
+        clearInterval(_stepTimer);
+        if (!res.ok) throw new Error(data.detail || 'Analysis failed');
+        renderResults(data);
+      } catch (err) {
+        clearInterval(_stepTimer);
+        document.getElementById('loading').style.display = 'none';
+        document.getElementById('form-single').style.display = 'block';
+        const msg = err.message || 'Something went wrong.';
+        if (msg.includes('rate limit') || msg.includes('quota') || msg.includes('429') || msg.includes('overload')) {
+          toast('⚠️ API limit hit! Add your own free Gemini key in ⚙️ Developer Settings to bypass limits.', 'error', 6000);
+        } else {
+          toast(msg, 'error');
+        }
+      }
+    }
+
+    /* ── AI Resume Rewriter ── */
+    let _rewriteData = null;
+
+    async function rewriteResume() {
+      if (!isPremium()) { openPaywall(); return; }
+
+      const apiKey = document.getElementById('apiKeyRewrite').value.trim();
+      const jobDesc = document.getElementById('jobDescRewrite').value.trim();
+      const file = document.getElementById('resumeFileRewrite').files[0];
+
+      if (!file) return toast('Please upload your resume');
+      if (!jobDesc) return toast('Please paste the job description');
+
+      document.getElementById('form-rewrite').style.display = 'none';
+      document.getElementById('rewrite-results').style.display = 'none';
+      document.getElementById('rewrite-loading').style.display = 'block';
+      const rtimer = startSteps('rstep-', 5);
+
+      const fd = new FormData();
+      if (apiKey) fd.append('api_key', apiKey);
+      fd.append('job_description', jobDesc);
+      fd.append('resume', file);
+
+      try {
+        const res = await fetch(`${API}/api/rewrite`, { method: 'POST', body: fd });
+        const data = await res.json();
+        clearInterval(rtimer);
+        if (!res.ok) throw new Error(data.detail || 'Rewrite failed');
+        _rewriteData = data.rewritten;
+        renderRewrite(data.rewritten);
+      } catch (err) {
+        clearInterval(rtimer);
+        document.getElementById('rewrite-loading').style.display = 'none';
+        document.getElementById('form-rewrite').style.display = 'block';
+        toast(err.message || 'Rewrite failed. Check the server or API key.');
+      }
+    }
+
+    /* ── Render Rewrite Results ── */
+    function renderRewrite(r) {
+      document.getElementById('rewrite-loading').style.display = 'none';
+      document.getElementById('rewrite-results').style.display = 'block';
+
+      // Summary
+      document.getElementById('rw-summary-text').textContent = r.rewritten_summary || '—';
+
+      // Skills
+      const skillsEl = document.getElementById('rw-skills-text');
+      skillsEl.innerHTML = '';
+      (r.rewritten_skills || []).forEach(s => {
+        const span = document.createElement('span');
+        span.className = 'tag gold';
+        span.textContent = s;
+        skillsEl.appendChild(span);
+      });
+
+      // Bullets
+      const bulletsEl = document.getElementById('rw-bullets-text');
+      bulletsEl.innerHTML = '';
+      (r.rewritten_bullets || []).forEach(b => {
+        const d = document.createElement('div');
+        d.className = 'rewrite-bullet';
+        d.innerHTML = `<span class="bullet-dot">▸</span><span>${b.replace(/^[•▸\-]\s*/, '')}</span>`;
+        bulletsEl.appendChild(d);
+      });
+
+      // ATS Keywords
+      const atsEl = document.getElementById('rw-ats-text');
+      atsEl.innerHTML = '';
+      (r.ats_keywords || []).forEach(k => {
+        const span = document.createElement('span');
+        span.className = 'tag b';
+        span.textContent = k;
+        atsEl.appendChild(span);
+      });
+
+      // ATS Tips
+      const tipsEl = document.getElementById('rw-tips-text');
+      tipsEl.innerHTML = '';
+      (r.ats_tips || []).forEach(tip => {
+        const d = document.createElement('div');
+        d.className = 'ats-tip';
+        d.innerHTML = `<span class="ats-tip-icon">→</span><span>${tip}</span>`;
+        tipsEl.appendChild(d);
+      });
+
+      // Cover Letter
+      document.getElementById('rw-cover-text').textContent = r.cover_letter_opening || '—';
+
+      document.getElementById('rewrite-results').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    /* ── Copy section to clipboard ── */
+    function copySection(elementId, btn) {
+      const el = document.getElementById(elementId);
+      let text = '';
+
+      // Handle different element types
+      if (el.classList.contains('rewrite-keywords')) {
+        text = Array.from(el.querySelectorAll('.tag'))
+          .map(t => t.textContent).join(', ');
+      } else if (el.querySelector('.rewrite-bullet')) {
+        text = Array.from(el.querySelectorAll('.rewrite-bullet span:last-child'))
+          .map(s => '• ' + s.textContent).join('\n');
+      } else {
+        text = el.textContent;
+      }
+
+      navigator.clipboard.writeText(text.trim()).then(() => {
+        const orig = btn.textContent;
+        btn.textContent = '✅ Copied!';
+        btn.classList.add('copied');
+        setTimeout(() => { btn.textContent = orig; btn.classList.remove('copied'); }, 2000);
+      }).catch(() => {
+        toast('Could not copy — please select and copy manually');
+      });
+    }
+
+    /* ── Download as .txt ── */
+    function downloadRewrite() {
+      if (!_rewriteData) return;
+      const r = _rewriteData;
+      const lines = [
+        '=== HIREOS — AI REWRITTEN RESUME ===',
+        '',
+        '--- PROFESSIONAL SUMMARY ---',
+        r.rewritten_summary || '',
+        '',
+        '--- SKILLS (by relevance) ---',
+        (r.rewritten_skills || []).join(' | '),
+        '',
+        '--- ACHIEVEMENT BULLETS ---',
+        (r.rewritten_bullets || []).join('\n'),
+        '',
+        '--- ATS KEYWORDS TO ADD ---',
+        (r.ats_keywords || []).join(', '),
+        '',
+        '--- ATS OPTIMIZATION TIPS ---',
+        (r.ats_tips || []).map((t, i) => `${i + 1}. ${t}`).join('\n'),
+        '',
+        '--- COVER LETTER OPENING ---',
+        r.cover_letter_opening || '',
+        '',
+        '=== Generated by HireOS · hireos.ai ===',
+      ];
+      const blob = new Blob([lines.join('\n')], { type: 'text/plain' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'HireOS_Rewritten_Resume.txt';
+      a.click();
+      URL.revokeObjectURL(a.href);
+    }
+
+    /* ── Render Analysis Results ── */
+    function renderResults(data) {
+      document.getElementById('loading').style.display = 'none';
+      document.getElementById('results').style.display = 'block';
+
+      const { candidate, score, questions } = data;
+
+      document.getElementById('candidateName').textContent = candidate.name || 'Candidate Analysis';
+
+      const s = score.score || 0;
+      const circ = 452;
+      const offset = circ - (s / 100) * circ;
+      const color = s >= 75 ? '#10b981' : s >= 50 ? '#f59e0b' : '#f43f5e';
+      const fg = document.getElementById('gaugeFg');
+      fg.style.stroke = color;
+      setTimeout(() => { fg.style.strokeDashoffset = offset; }, 80);
+
+      let count = 0;
+      const ctr = setInterval(() => {
+        count = Math.min(count + Math.ceil(s / 35), s);
+        document.getElementById('gaugeVal').textContent = count;
+        document.getElementById('gaugeVal').style.color = color;
+        if (count >= s) clearInterval(ctr);
+      }, 28);
+
+      const rec = score.hire_recommendation || '';
+      const chip = document.getElementById('verdictChip');
+      chip.textContent = rec;
+      if (rec.includes('Strong Yes')) chip.style.cssText = 'background:rgba(16,185,129,0.15);color:#10b981;border:1px solid rgba(16,185,129,0.3)';
+      else if (rec.includes('Yes')) chip.style.cssText = 'background:rgba(6,182,212,0.15);color:#06b6d4;border:1px solid rgba(6,182,212,0.3)';
+      else if (rec.includes('Maybe')) chip.style.cssText = 'background:rgba(245,158,11,0.15);color:#f59e0b;border:1px solid rgba(245,158,11,0.3)';
+      else chip.style.cssText = 'background:rgba(244,63,94,0.15);color:#f43f5e;border:1px solid rgba(244,63,94,0.3)';
+
+      document.getElementById('reasoning').textContent = score.reasoning || '';
+
+      const st = document.getElementById('strengths'); st.innerHTML = '';
+      (score.strengths || []).forEach(s => st.appendChild(mkTag(s, 'g')));
+      const gt = document.getElementById('gaps'); gt.innerHTML = '';
+      (score.gaps || []).forEach(g => gt.appendChild(mkTag(g, 'r')));
+
+      const im = document.getElementById('improvements'); im.innerHTML = '';
+      const improvementsArr = score.improvements || [];
+      if (improvementsArr.length === 0) {
+        im.innerHTML = '<div style="color:var(--text-3);font-size:13px;padding:10px">No specific improvements identified — excellent match!</div>';
+      } else {
+        improvementsArr.forEach(tip => {
+          const d = document.createElement('div');
+          d.className = 'roadmap-item';
+          d.innerHTML = `<div class="roadmap-bullet">💡</div><div class="roadmap-text">${tip}</div>`;
+          im.appendChild(d);
+        });
+      }
+
+      // Show/hide upsell based on premium status
+      const upsell = document.getElementById('rewrite-upsell');
+      if (upsell) upsell.style.display = isPremium() ? 'none' : '';
+
+      document.getElementById('exp').textContent = `${candidate.experience_years || '?'} years`;
+      document.getElementById('edu').textContent = candidate.education || '—';
+      document.getElementById('summary').textContent = candidate.summary || '—';
+      const sk = document.getElementById('skills'); sk.innerHTML = '';
+      (candidate.skills || []).forEach(s => sk.appendChild(mkTag(s, 'b')));
+
+      const qEl = document.getElementById('questions'); qEl.innerHTML = '';
+      const qs = questions.questions || [];
+      qs.forEach((q, i) => {
+        const div = document.createElement('div');
+        div.className = 'q-item';
+        div.innerHTML = `
+        <div class="q-header" onclick="toggleQ(this.parentElement)">
+          <div class="q-num">${i + 1}</div>
+          <div style="flex:1">
+            <div class="q-text">${q.question}</div>
+            <div class="q-meta-bar">
+              ${q.type ? `<span class="tag b" style="font-size:10px;padding:3px 9px">${q.type}</span>` : ''}
+              ${q.focus_area ? `<span class="tag a" style="font-size:10px;padding:3px 9px">${q.focus_area}</span>` : ''}
+            </div>
+          </div>
+          <div class="q-expand-icon">⌄</div>
+        </div>
+        <div class="q-body">
+          ${q.expected_signal ? `
+          <div class="q-detail-grid" style="margin-bottom:16px">
+            <div class="info-box"><div class="info-box-label">Expected Signal</div><div class="info-box-val muted">${q.expected_signal}</div></div>
+          </div>` : ''}
+          <div class="practice-box">
+            <div class="sec" style="margin-top:0;margin-bottom:10px">✍️ Practice your answer</div>
+            <textarea class="practice-answer" placeholder="Type your answer here…" rows="4"></textarea>
+            <button class="btn-eval" onclick="evalAnswer(this, '${escQ(q.question)}')">⚡ Evaluate Answer</button>
+            <div class="eval-result" id="eval-${i}"></div>
+          </div>
+        </div>`;
+        qEl.appendChild(div);
+      });
+    }
+
+    function mkTag(text, cls) {
+      const span = document.createElement('span');
+      span.className = `tag ${cls}`; span.textContent = text;
+      return span;
+    }
+    function escQ(s) { return s.replace(/'/g, "&#39;").replace(/"/g, "&quot;"); }
+    function toggleQ(el) { el.classList.toggle('open'); }
+
+    /* ── Evaluate practice answer ── */
+    async function evalAnswer(btn, question) {
+      const box = btn.closest('.practice-box');
+      const ta = box.querySelector('.practice-answer');
+      const answer = ta.value.trim();
+      if (!answer) return toast('Please type your answer first');
+
+      const evalEl = btn.nextElementSibling;
+      btn.disabled = true;
+      btn.textContent = '⏳ Evaluating…';
+
+      const fd = new FormData();
+      const customKey = document.getElementById('apiKey').value.trim();
+      if (customKey) fd.append('api_key', customKey);
+      fd.append('question', question);
+      fd.append('answer', answer);
+      fd.append('job_description', _currentJD);
+
+      try {
+        const res = await fetch(`${API}/api/evaluate`, { method: 'POST', body: fd });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.detail || 'Evaluation failed');
+
+        const fb = data.feedback;
+        const sc = fb.score || 0;
+        const scColor = sc >= 8 ? '#10b981' : sc >= 5 ? '#f59e0b' : '#f43f5e';
+        const scBg = sc >= 8 ? 'rgba(16,185,129,0.12)' : sc >= 5 ? 'rgba(245,158,11,0.12)' : 'rgba(244,63,94,0.12)';
+
+        evalEl.style.display = 'block';
+        evalEl.innerHTML = `
+        <div class="eval-score-row">
+          <div class="eval-score-badge" style="color:${scColor};background:${scBg}">${sc}/10</div>
+          <div class="eval-label">Answer Score</div>
+        </div>
+        ${(fb.strengths || []).length ? `<div class="mini-tags">${(fb.strengths || []).map(s => `<span class="mini-tag g">✓ ${s}</span>`).join('')}</div>` : ''}
+        ${(fb.gaps || []).length ? `<div class="mini-tags" style="margin-top:6px">${(fb.gaps || []).map(g => `<span class="mini-tag r">✗ ${g}</span>`).join('')}</div>` : ''}
+        ${fb.improvement_suggestions ? `<div class="eval-suggestions">💡 ${fb.improvement_suggestions}</div>` : ''}`;
+
+        btn.textContent = '✅ Evaluated';
+      } catch (err) {
+        toast(err.message || 'Evaluation failed');
+        btn.disabled = false;
+        btn.textContent = '⚡ Evaluate Answer';
+      }
+    }
+
+    /* ── Analyze Batch ── */
+    async function analyzeBatch() {
+      const jobDesc = document.getElementById('jobDescBatch').value.trim();
+      const files = document.getElementById('resumeFiles').files;
+      const apiKey = document.getElementById('apiKeyBatch').value.trim();
+
+      if (!jobDesc) return toast('Please enter a job description');
+      if (!files.length) return toast('Please upload at least one resume');
+
+      document.getElementById('form-batch').style.display = 'none';
+      document.getElementById('batch-results').style.display = 'none';
+      document.getElementById('batch-loading').style.display = 'block';
+
+      const fd = new FormData();
+      if (apiKey) fd.append('api_key', apiKey);
+      fd.append('job_description', jobDesc);
+      Array.from(files).forEach(f => fd.append('resumes', f));
+
+      try {
+        const res = await fetch(`${API}/api/rank`, { method: 'POST', body: fd });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.detail || 'Ranking failed');
+        renderBatch(data);
+      } catch (err) {
+        document.getElementById('batch-loading').style.display = 'none';
+        document.getElementById('form-batch').style.display = 'block';
+        toast(err.message || 'Something went wrong');
+      }
+    }
+
+    function renderBatch(data) {
+      document.getElementById('batch-loading').style.display = 'none';
+      const el = document.getElementById('batch-results');
+      el.style.display = 'block';
+      const r = data.ranking || {};
+      const ranked = r.ranked_candidates || [];
+      const medals = ['🥇', '🥈', '🥉'];
+
+      let html = `
+      <div class="result-topbar">
+        <div class="candidate-name">🏆 ${r.top_pick || 'Top Candidate'}</div>
+        <button class="btn-sm" onclick="restartBatch()">← Rank Again</button>
+      </div>
+      ${r.hiring_summary ? `<div class="info-box" style="margin-bottom:20px"><div class="info-box-label">Talent Pool Summary</div><div class="info-box-val muted">${r.hiring_summary}</div></div>` : ''}
+      <div class="sec">Ranked Candidates</div>`;
+
+      ranked.forEach((c, i) => {
+        const s = c.score || 0;
+        const color = s >= 75 ? '#10b981' : s >= 50 ? '#f59e0b' : '#f43f5e';
+        const verdict = c.final_verdict || '';
+        const vTag = verdict === 'Hire' ? 'g' : verdict === 'Interview' ? 'a' : 'r';
+        html += `
+        <div class="rank-card">
+          <div class="rank-medal">${medals[i] || `#${c.rank}`}</div>
+          <div class="rank-info">
+            <div class="rank-name">${c.name || 'Candidate'}</div>
+            <div class="rank-reason">${c.one_line_reason || ''}</div>
+            <div class="rank-bar-track"><div class="rank-bar" style="width:${s}%;background:${color}"></div></div>
+          </div>
+          <div>
+            <div class="rank-score" style="color:${color}">${s}</div>
+            <span class="tag ${vTag}" style="font-size:11px;margin-top:6px;display:block;text-align:center">${verdict}</span>
+          </div>
+        </div>`;
+      });
+      el.innerHTML = html;
+    }
+
+    /* ── Helpers ── */
+    function restart() {
+      document.getElementById('results').style.display = 'none';
+      document.getElementById('form-single').style.display = 'block';
+      document.getElementById('resumeFile').value = '';
+      document.getElementById('dropZone').classList.remove('has-file');
+      document.getElementById('fileName').style.display = 'none';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    function restartBatch() {
+      document.getElementById('batch-results').style.display = 'none';
+      document.getElementById('form-batch').style.display = 'block';
+      document.getElementById('resumeFiles').value = '';
+      document.getElementById('dropZoneBatch').classList.remove('has-file');
+      document.getElementById('fileNameBatch').style.display = 'none';
+    }
+    function restartRewrite() {
+      document.getElementById('rewrite-results').style.display = 'none';
+      document.getElementById('form-rewrite').style.display = 'block';
+      document.getElementById('resumeFileRewrite').value = '';
+      document.getElementById('dropZoneRewrite').classList.remove('has-file');
+      document.getElementById('fileNameRewrite').style.display = 'none';
+      _rewriteData = null;
+    }
+    function printReport() { window.print(); }
+
+    function cleanError(raw) {
+      if (!raw) return 'Something went wrong. Please try again.';
+      const s = String(raw);
+      if (s.includes('RESOURCE_EXHAUSTED') || s.includes('quota') || s.includes('429'))
+        return '⚠️ API quota hit! Add your own free Gemini key in ⚙️ Developer Settings to get unlimited access.';
+      if (s.includes('UNAVAILABLE') || s.includes('503') || s.includes('overload'))
+        return '⚠️ AI is temporarily busy. Wait 30 seconds and try again.';
+      if (s.includes('deadline') || s.includes('timeout'))
+        return '⚠️ Request timed out. Please try again.';
+      return s.length > 180 ? s.slice(0, 177) + '…' : s;
+    }
+
+    function toast(msg, type = 'error', duration = 5000) {
+      const t = document.getElementById('toast');
+      t.textContent = cleanError(msg);
+      t.className = '';
+      if (type === 'success') t.classList.add('success-toast');
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show', 'success-toast'), duration);
+    }
+
+
+    /* ── Init ── */
+    updatePremiumUI();
+  </script>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <!-- LEGAL + CHATBOT JAVASCRIPT                                             -->
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <script>
+    // ─── LEGAL PAGES ─────────────────────────────────────────────────────────
+    const LEGAL = {
+      privacy: `
+        <h2 style="color:var(--violet);margin-bottom:8px;">🔒 Privacy Policy</h2>
+        <p style="color:var(--text-2);font-size:13px;margin-bottom:24px;">Last updated: June 2025</p>
+        <p>HireOS ("we", "us") is operated by Saurabh Gaur, India. This Privacy Policy explains how we collect, use, and protect your information when you use <strong>https://hire-os-langgraph.vercel.app</strong>.</p>
+        <h3 style="margin-top:20px;color:var(--text);">1. Information We Collect</h3>
+        <ul style="padding-left:20px;line-height:2;">
+          <li><strong>Resume data:</strong> Uploaded resumes are sent to Google Gemini API for AI analysis. We do NOT store your resume on our servers.</li>
+          <li><strong>Payment data:</strong> Payments are processed by Razorpay. We only store a payment ID (not card/UPI details) to verify your premium access.</li>
+          <li><strong>Usage data:</strong> We may collect anonymous analytics (page views, feature usage) to improve the product.</li>
+        </ul>
+        <h3 style="margin-top:20px;color:var(--text);">2. How We Use Your Data</h3>
+        <ul style="padding-left:20px;line-height:2;">
+          <li>To provide AI resume analysis and rewriting features</li>
+          <li>To verify payment and grant premium access</li>
+          <li>To improve HireOS features and user experience</li>
+        </ul>
+        <h3 style="margin-top:20px;color:var(--text);">3. Data Sharing</h3>
+        <p>We share your resume text with <strong>Google Gemini API</strong> for AI processing, subject to Google's privacy policy. We do not sell your data to third parties.</p>
+        <h3 style="margin-top:20px;color:var(--text);">4. Data Storage</h3>
+        <p>Premium access status is stored locally in your browser (localStorage). We do not maintain a user database. Your resume data is NOT stored on our servers after processing.</p>
+        <h3 style="margin-top:20px;color:var(--text);">5. Contact</h3>
+        <p>For privacy concerns, email us at <a href="mailto:devsaurabhgaur@gmail.com" style="color:var(--emerald);">devsaurabhgaur@gmail.com</a></p>
+      `,
+      terms: `
+        <h2 style="color:var(--violet);margin-bottom:8px;">📋 Terms of Service</h2>
+        <p style="color:var(--text-2);font-size:13px;margin-bottom:24px;">Last updated: June 2025 | Governing law: India (IT Act, 2000)</p>
+        <p>By using HireOS, you agree to these Terms. Please read them carefully.</p>
+        <h3 style="margin-top:20px;color:var(--text);">1. Service Description</h3>
+        <p>HireOS provides AI-powered resume analysis and rewriting services using Google Gemini. The service is provided "as-is" for personal career use.</p>
+        <h3 style="margin-top:20px;color:var(--text);">2. Eligibility</h3>
+        <ul style="padding-left:20px;line-height:2;">
+          <li>You must be at least 18 years old to use this service.</li>
+          <li>You must provide accurate information when using the service.</li>
+        </ul>
+        <h3 style="margin-top:20px;color:var(--text);">3. Permitted Use</h3>
+        <ul style="padding-left:20px;line-height:2;">
+          <li>HireOS is for personal, non-commercial use only.</li>
+          <li>You may not resell, redistribute, or scrape HireOS outputs.</li>
+          <li>You are responsible for the accuracy of information in your resume.</li>
+        </ul>
+        <h3 style="margin-top:20px;color:var(--text);">4. Premium Access</h3>
+        <p>Premium access (₹199 one-time) grants lifetime access to the AI Resume Rewriter feature on the device/browser where payment is made. Premium status is stored locally in your browser — clearing browser data may require re-verification (contact support).</p>
+        <h3 style="margin-top:20px;color:var(--text);">5. AI Disclaimer</h3>
+        <p>HireOS uses AI to generate resume suggestions. AI outputs may not always be accurate. We recommend reviewing all AI-generated content before using it professionally. HireOS is a tool to assist you — not a guarantee of job placement.</p>
+        <h3 style="margin-top:20px;color:var(--text);">6. Limitation of Liability</h3>
+        <p>HireOS is not liable for any indirect, incidental, or consequential damages arising from your use of the service. Our maximum liability is limited to the amount you paid (₹199).</p>
+        <h3 style="margin-top:20px;color:var(--text);">7. Changes to Terms</h3>
+        <p>We reserve the right to update these Terms. Continued use after changes constitutes acceptance.</p>
+        <h3 style="margin-top:20px;color:var(--text);">8. Contact</h3>
+        <p>Email: <a href="mailto:devsaurabhgaur@gmail.com" style="color:var(--emerald);">devsaurabhgaur@gmail.com</a></p>
+      `,
+      refund: `
+        <h2 style="color:var(--violet);margin-bottom:8px;">💳 Refund Policy</h2>
+        <p style="color:var(--text-2);font-size:13px;margin-bottom:24px;">Last updated: June 2025</p>
+        <div style="background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3);border-radius:12px;padding:20px;margin-bottom:24px;">
+          <h3 style="color:#ef4444;margin:0 0 8px;">⚠️ No Refund Policy</h3>
+          <p style="margin:0;">HireOS offers a <strong>₹199 one-time lifetime access</strong> fee. Due to the digital nature of this product, <strong>all sales are final and non-refundable</strong> once premium access has been granted.</p>
+        </div>
+        <h3 style="margin-top:20px;color:var(--text);">Why No Refunds?</h3>
+        <ul style="padding-left:20px;line-height:2;">
+          <li>HireOS is a <strong>digital service</strong> — once you access the AI Resume Rewriter, the value has been delivered.</li>
+          <li>There is no physical product that can be returned.</li>
+          <li>The service is available for unlimited use for life after a single payment.</li>
+        </ul>
+        <h3 style="margin-top:20px;color:var(--text);">Exceptions</h3>
+        <p>We will consider a refund only in the following cases:</p>
+        <ul style="padding-left:20px;line-height:2;">
+          <li>You were charged but premium access was NOT granted (technical error)</li>
+          <li>You were charged twice for the same payment</li>
+        </ul>
+        <p>In such cases, please email us within <strong>7 days</strong> of payment with your payment ID.</p>
+        <h3 style="margin-top:20px;color:var(--text);">Before You Buy</h3>
+        <p>We encourage you to use the <strong>free resume analysis feature</strong> before purchasing to ensure HireOS meets your needs.</p>
+        <h3 style="margin-top:20px;color:var(--text);">Contact for Disputes</h3>
+        <p>Email: <a href="mailto:devsaurabhgaur@gmail.com" style="color:var(--emerald);">devsaurabhgaur@gmail.com</a><br>
+        Response time: Within 48 hours on business days.</p>
+        <p style="margin-top:16px;color:var(--text-2);font-size:12px;">This policy is governed by Indian law under the Consumer Protection (E-Commerce) Rules, 2020.</p>
+      `
+    };
+
+    function openLegal(type) {
+      document.getElementById('legalContent').innerHTML = LEGAL[type] || '';
+      document.getElementById('legalModal').style.display = 'block';
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLegal() {
+      document.getElementById('legalModal').style.display = 'none';
+      document.body.style.overflow = '';
+    }
+    // Close modal on backdrop click
+    document.getElementById('legalModal').addEventListener('click', function(e) {
+      if (e.target === this) closeLegal();
+    });
+
+    // ─── SUPPORT CHATBOT ─────────────────────────────────────────────────────
+    let chatOpen = false;
+    let chatFirstOpen = true;
+
+    const CHAT_CONTEXT = `You are HireOS's friendly AI support assistant. HireOS is an AI resume analysis and rewriting tool built by Saurabh Gaur (DEVsaurabhgaur).
+
+Key facts about HireOS:
+- Free features: Resume analysis, score, interview questions, candidate ranking
+- Premium (₹199 one-time lifetime): AI Resume Rewriter — rewrites resume for specific job roles with exact keywords, ATS optimization, cover letter opening
+- Supported file formats: PDF, DOCX, TXT
+- Payment: Razorpay (UPI, cards, net banking) — one-time ₹199, no subscription
+- Refund policy: No refunds (digital product), except for double charges or technical errors
+- Contact: devsaurabhgaur@gmail.com
+- Website: https://hire-os-langgraph.vercel.app
+- Built with Google Gemini 2.5 + LangGraph
+
+Answer only questions related to HireOS. Be concise, friendly, and helpful. If asked about pricing, always mention the ₹199 lifetime deal. For technical issues, ask them to email support.`;
+
+    function toggleChat() {
+      chatOpen = !chatOpen;
+      const box = document.getElementById('chatBox');
+      const badge = document.getElementById('chatBadge');
+      const icon = document.getElementById('chatIcon');
+      if (chatOpen) {
+        box.classList.add('open');
+        badge.style.display = 'none';
+        icon.textContent = '✕';
+        if (chatFirstOpen) {
+          chatFirstOpen = false;
+          setTimeout(() => {
+            addBotMessage('What would you like help with? You can ask me anything about HireOS! 🚀');
+          }, 600);
+        }
+        setTimeout(() => document.getElementById('chatInput').focus(), 100);
+      } else {
+        box.classList.remove('open');
+        icon.textContent = '💬';
+      }
+    }
+
+    function _chatTime() {
+      const now = new Date();
+      return now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    }
+
+    function addBotMessage(text) {
+      const msgs = document.getElementById('chatMessages');
+      const wrap = document.createElement('div');
+      wrap.className = 'chat-msg-wrap bot-wrap';
+      const msg = document.createElement('div');
+      msg.className = 'chat-msg chat-bot';
+      msg.innerHTML = text.replace(/\n/g, '<br>');
+      const time = document.createElement('div');
+      time.className = 'chat-time';
+      time.textContent = _chatTime();
+      wrap.appendChild(msg);
+      wrap.appendChild(time);
+      msgs.appendChild(wrap);
+      msgs.scrollTop = msgs.scrollHeight;
+    }
+
+    function addUserMessage(text) {
+      const msgs = document.getElementById('chatMessages');
+      const wrap = document.createElement('div');
+      wrap.className = 'chat-msg-wrap user-wrap';
+      const msg = document.createElement('div');
+      msg.className = 'chat-msg chat-user';
+      msg.textContent = text;
+      const time = document.createElement('div');
+      time.className = 'chat-time';
+      time.textContent = _chatTime();
+      wrap.appendChild(msg);
+      wrap.appendChild(time);
+      msgs.appendChild(wrap);
+      msgs.scrollTop = msgs.scrollHeight;
+    }
+
+    function addTyping() {
+      const msgs = document.getElementById('chatMessages');
+      const wrap = document.createElement('div');
+      wrap.className = 'chat-typing-wrap';
+      wrap.id = 'chatTyping';
+      wrap.innerHTML = `<div class="typing-bubble"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div>`;
+      msgs.appendChild(wrap);
+      msgs.scrollTop = msgs.scrollHeight;
+    }
+
+    function removeTyping() {
+      const t = document.getElementById('chatTyping');
+      if (t) t.remove();
+    }
+
+    function askQuick(q) {
+      document.getElementById('chatInput').value = q;
+      sendChat();
+    }
+
+    async function sendChat() {
+      const input = document.getElementById('chatInput');
+      const msg = input.value.trim();
+      if (!msg) return;
+      input.value = '';
+      addUserMessage(msg);
+      document.getElementById('chatSend').disabled = true;
+      addTyping();
+
+      // Get API key from settings or env
+      const apiKeyInput = document.getElementById('apiKeyInput');
+      const key = (apiKeyInput && apiKeyInput.value.trim()) || '';
+
+      try {
+        const res = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=' + (key || 'DEMO'), {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            contents: [{
+              parts: [{
+                text: CHAT_CONTEXT + '\n\nUser question: ' + msg
+              }]
+            }]
+          })
+        });
+
+        removeTyping();
+        if (res.ok) {
+          const data = await res.json();
+          const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || 'I could not process that. Please email devsaurabhgaur@gmail.com for help.';
+          addBotMessage(reply);
+        } else {
+          // Fallback to local FAQ if API fails
+          addBotMessage(localFAQ(msg));
+        }
+      } catch(e) {
+        removeTyping();
+        addBotMessage(localFAQ(msg));
+      }
+      document.getElementById('chatSend').disabled = false;
+    }
+
+    // Local FAQ fallback when no API key available
+    function localFAQ(q) {
+      q = q.toLowerCase();
+      if (q.includes('price') || q.includes('cost') || q.includes('₹') || q.includes('rs')) return '💰 HireOS Premium is ₹199 one-time payment — lifetime access! No subscription, no recurring fees. Pay once, use forever.';
+      if (q.includes('refund')) return '❌ We have a no-refund policy since HireOS is a digital product. However, if you were charged but didn\'t get access, email devsaurabhgaur@gmail.com within 7 days.';
+      if (q.includes('format') || q.includes('pdf') || q.includes('docx') || q.includes('upload')) return '📄 HireOS supports PDF, DOCX (.docx), and TXT file formats. Max file size is 5MB.';
+      if (q.includes('premium') || q.includes('feature')) return '✨ Premium (₹199) unlocks the AI Resume Rewriter — it rewrites your resume specifically for each job role with ATS keywords, achievement bullets, and a cover letter opening.';
+      if (q.includes('contact') || q.includes('support') || q.includes('help') || q.includes('email')) return '📧 Contact support: devsaurabhgaur@gmail.com\nWe reply within 48 hours on business days.';
+      if (q.includes('how') || q.includes('work')) return '🚀 HireOS works in 3 steps:\n1. Upload your resume (PDF/DOCX/TXT)\n2. Select your target job role\n3. Get AI-powered analysis, score & rewrite!\n\nFree analysis is instant. Premium rewrite takes ~60 seconds.';
+      if (q.includes('ats')) return '🎯 ATS (Applicant Tracking System) optimization means HireOS adds the exact keywords from the job description to your resume so it passes automated screening systems used by companies.';
+      return '🤖 I\'m HireOS\'s support bot! For detailed help, email devsaurabhgaur@gmail.com — we\'ll respond within 48 hours. Or try asking me about pricing, features, refunds, or file formats!';
+    }
+
+    // Show badge on first load after 3 seconds
+    setTimeout(() => {
+      if (!chatOpen) {
+        document.getElementById('chatBadge').style.display = 'flex';
+      }
+    }, 3000);
+  </script>
+</body>
+
+</html>
