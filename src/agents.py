@@ -36,6 +36,11 @@ from src.telemetry       import Telemetry
 MAX_RETRIES   = 2          # attempts after first failure (total = MAX_RETRIES + 1)
 BASE_DELAY_S  = 1.5        # base sleep between retries
 
+# Design Decision: Each agent follows the same fault-tolerance pattern via
+# _with_circuit_breaker(). This keeps agent code minimal — they only define
+# WHAT to do (call a tool), while the wrapper handles HOW to do it safely
+# (retries, circuit breaker, checkpoint, rollback, telemetry).
+
 
 # ── Shared fault-tolerance wrapper ────────────────────────────────────────────
 
