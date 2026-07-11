@@ -215,7 +215,19 @@ def _parse_json(raw: str) -> dict:
 def parse_resume(resume_text: str, api_key: str) -> dict:
     """
     Extracts structured data from raw resume text.
-    Returns: name, skills, experience_years, education, past_roles, summary
+
+    Parameters
+    ----------
+    resume_text : str
+        Raw text extracted from the candidate's resume (PDF/DOCX/TXT).
+    api_key : str
+        Google Gemini API key for authentication.
+
+    Returns
+    -------
+    dict
+        Structured data with keys: name, skills, experience_years,
+        education, past_roles, summary.
     """
     system = (
         "You are a resume parser. Extract structured information from resume text. "
