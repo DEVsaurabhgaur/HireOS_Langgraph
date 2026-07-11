@@ -36,6 +36,19 @@ class CheckpointManager:
         """
         Snapshot state before node_name runs.
         Returns updated checkpoints list to store back in state.
+
+        Parameters
+        ----------
+        state : dict
+            Current pipeline state. Keys 'api_key', 'checkpoints',
+            'execution_log', and 'node_metrics' are excluded from snapshot.
+        node_name : str
+            Name of the agent node about to execute (used as tag).
+
+        Returns
+        -------
+        list
+            Updated checkpoints list (append to state['checkpoints']).
         """
         # Keys we preserve in the snapshot (exclude large/sensitive fields)
         excluded = {"api_key", "checkpoints", "execution_log", "node_metrics"}
