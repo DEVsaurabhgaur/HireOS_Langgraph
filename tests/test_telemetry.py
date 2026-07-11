@@ -85,3 +85,28 @@ class TestSuccessNode:
         m = Telemetry.start_node({}, "node_a")
         m = Telemetry.success_node(m, "node_a")
         assert "end_time" in m["node_a"]
+
+
+class TestFailNode:
+    def test_sets_status_to_failed(self):
+        m = Telemetry.start_node({}, "node_a")
+        m = Telemetry.fail_node(m, "node_a", "some error")
+        assert m["node_a"]["status"] == "failed"
+
+    def test_records_error_message(self):
+        m = Telemetry.fail_node({}, "node_a", "API down")
+        assert m["node_a"]["error"] == "API down"
+
+    def test_increments_retry_count(self):
+        m = Telemetry.fail_node({}, "node_a", "err")
+        assert m["node_a"]["retry_count"] >= 1
+
+
+class TestSkipNode:
+    def test_sets_status_to_skipped(self):
+        m = Telemetry.skip_node({}, "node_a", "circuit open")
+        assert m["node_a"]["status"] == "skipped"
+
+    def test_records_skip_reason(self):
+        m = Telemetry.skip_node({}, "node_a", "circuit OPEN")
+        assert m["node_a"]["error"] == "circuit OPEN"
