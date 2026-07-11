@@ -1,0 +1,38 @@
+[project]
+name = "hireos"
+version = "2.0.0"
+description = "AI Resume Intelligence Platform — parse, score, rewrite resumes with Google Gemini"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.11"
+authors = [
+    {name = "Saurabh Gaur", email = "dev@saurabhgaur.dev"}
+]
+keywords = ["ai", "resume", "hiring", "langgraph", "gemini", "ats"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+[project.urls]
+Homepage = "https://hire-os-langgraph.vercel.app"
+Repository = "https://github.com/DEVsaurabhgaur/HireOS_Langgraph"
+Issues = "https://github.com/DEVsaurabhgaur/HireOS_Langgraph/issues"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = "test_*.py"
+python_classes = "Test*"
+python_functions = "test_*"
+addopts = "-v --tb=short"
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W"]
+ignore = ["E501"]
