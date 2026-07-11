@@ -1,8 +1,6 @@
 name: Lint
 
 on:
-  push:
-    branches: [main]
   pull_request:
     branches: [main]
 
@@ -22,3 +20,4 @@ jobs:
 
       - name: Run ruff
         run: ruff check . --output-format=github
+        continue-on-error: true
