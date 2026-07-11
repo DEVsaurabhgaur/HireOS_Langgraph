@@ -133,3 +133,15 @@ uploads/
 *.env
 .env*
 !.env.example
+
+# ── Additional patterns ──────────────────────────────────────────────────────
+# Automation scripts (should not be committed)
+_make_commits.py
+
+# Batch output files
+batch_results.json
+
+# Editor backups
+*~
+*.swp
+*.bak
