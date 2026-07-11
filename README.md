@@ -171,6 +171,15 @@ Optional `api_key` field on all endpoints — falls back to server `GOOGLE_API_K
 
 ---
 
+## 🤝 Contributing
+
+Contributions are welcome! Please read the [Contributing Guide](CONTRIBUTING.md) before submitting a PR.
+
+- 🐛 [Report a bug](https://github.com/DEVsaurabhgaur/HireOS_Langgraph/issues/new?template=bug_report.md)
+- ✨ [Request a feature](https://github.com/DEVsaurabhgaur/HireOS_Langgraph/issues/new?template=feature_request.md)
+
+---
+
 ## 👨‍💻 Author
 
 **Saurabh Gaur** — AI/ML Engineer · Building tools that matter
