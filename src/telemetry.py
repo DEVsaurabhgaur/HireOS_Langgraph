@@ -11,6 +11,20 @@ Nothing is stored here — all data lives in state["execution_log"] and state["n
 import time
 
 
+# ── Event type constants ────────────────────────────────────────────────────────
+EVENT_START = "start"
+EVENT_SUCCESS = "success"
+EVENT_FAILURE = "failure"
+EVENT_RETRY = "retry"
+EVENT_CIRCUIT_OPEN = "circuit_open"
+EVENT_CIRCUIT_CLOSED = "circuit_closed"
+EVENT_CHECKPOINT = "checkpoint"
+EVENT_ROLLBACK = "rollback"
+EVENT_ROUTE = "route"
+EVENT_FINISH = "finish"
+EVENT_SKIP = "skip"
+
+
 class Telemetry:
 
     # ── Execution log ──────────────────────────────────────────────────────────
