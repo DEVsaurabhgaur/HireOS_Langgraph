@@ -45,3 +45,25 @@ class TestLog:
     def test_snapshot_defaults_to_none(self):
         log = Telemetry.log([], "node_a", "info", "msg")
         assert log[0]["state_snapshot"] is None
+
+
+class TestStartNode:
+    def test_sets_status_to_running(self):
+        m = Telemetry.start_node({}, "parse_resume")
+        assert m["parse_resume"]["status"] == "running"
+
+    def test_records_start_time(self):
+        before = time.time()
+        m = Telemetry.start_node({}, "parse_resume")
+        after = time.time()
+        assert before <= m["parse_resume"]["start_time"] <= after
+
+    def test_clears_previous_error(self):
+        m = Telemetry.start_node({}, "parse_resume")
+        assert m["parse_resume"]["error"] is None
+
+    def test_does_not_mutate_original(self):
+        original = {"parse_resume": {"status": "pending"}}
+        result = Telemetry.start_node(original, "parse_resume")
+        assert original["parse_resume"]["status"] == "pending"
+        assert result["parse_resume"]["status"] == "running"
