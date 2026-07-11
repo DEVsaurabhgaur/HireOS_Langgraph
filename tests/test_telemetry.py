@@ -110,3 +110,40 @@ class TestSkipNode:
     def test_records_skip_reason(self):
         m = Telemetry.skip_node({}, "node_a", "circuit OPEN")
         assert m["node_a"]["error"] == "circuit OPEN"
+
+
+class TestRunSummary:
+    def test_counts_all_statuses(self):
+        metrics = {
+            "a": {"status": "success", "duration_ms": 100},
+            "b": {"status": "failed"},
+            "c": {"status": "skipped"},
+            "d": {"status": "pending"},
+        }
+        s = Telemetry.run_summary(metrics)
+        assert s["total"] == 4
+        assert s["success"] == 1
+        assert s["failed"] == 1
+        assert s["skipped"] == 1
+        assert s["pending"] == 1
+
+    def test_calculates_total_duration(self):
+        metrics = {
+            "a": {"status": "success", "duration_ms": 100},
+            "b": {"status": "success", "duration_ms": 200},
+        }
+        s = Telemetry.run_summary(metrics)
+        assert s["total_ms"] == 300.0
+
+    def test_average_duration_excludes_non_success(self):
+        metrics = {
+            "a": {"status": "success", "duration_ms": 100},
+            "b": {"status": "failed", "duration_ms": 999},
+        }
+        s = Telemetry.run_summary(metrics)
+        assert s["avg_ms"] == 100.0
+
+    def test_empty_metrics(self):
+        s = Telemetry.run_summary({})
+        assert s["total"] == 0
+        assert s["avg_ms"] == 0
