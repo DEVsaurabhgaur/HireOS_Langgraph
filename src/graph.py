@@ -13,6 +13,10 @@ Topology
 
 The supervisor reads state["next_node"] and routes via conditional edges.
 All agent nodes unconditionally return to the supervisor.
+
+Design: The graph is a supervisor-routed pipeline (not a free-form DAG).
+The supervisor enforces PIPELINE_ORDER, skipping nodes with open circuits.
+This guarantees predictable execution order while allowing fault recovery.
 """
 
 from langgraph.graph import StateGraph, END
