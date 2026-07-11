@@ -288,6 +288,7 @@ async def analyze(
     job_description: str = Form(...),
     api_key: str = Form(None),
 ):
+    """Full resume analysis: parse + score + interview questions in one Gemini call."""
     _check_rate(_ai_limiter, request)
     key = _resolve_key(api_key)
     jd = _sanitize(job_description, MAX_JD_CHARS)
