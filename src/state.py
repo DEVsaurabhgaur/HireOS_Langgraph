@@ -18,9 +18,9 @@ class HireOSState(TypedDict, total=False):
     can correctly merge partial updates from each node.
     """
     # ── Input ──────────────────────────────────────────────────────────────
-    job_description: str
-    raw_resumes: list
-    api_key: str
+    job_description: str        # Target role description text
+    raw_resumes: list           # List of raw resume text strings
+    api_key: str                # Google Gemini API key
 
     # ── Processing data ────────────────────────────────────────────────────
     parsed_candidates: list
