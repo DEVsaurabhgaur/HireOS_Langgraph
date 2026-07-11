@@ -147,3 +147,23 @@ class TestRunSummary:
         s = Telemetry.run_summary({})
         assert s["total"] == 0
         assert s["avg_ms"] == 0
+
+
+class TestFormatLogForCli:
+    def test_formats_events_with_icons(self):
+        log = [{"timestamp": time.time(), "node": "node_a",
+                 "event_type": "start", "message": "Starting"}]
+        lines = Telemetry.format_log_for_cli(log)
+        assert len(lines) == 1
+        assert "[node_a]" in lines[0]
+        assert "Starting" in lines[0]
+
+    def test_handles_empty_log(self):
+        lines = Telemetry.format_log_for_cli([])
+        assert lines == []
+
+    def test_handles_unknown_event_type(self):
+        log = [{"timestamp": time.time(), "node": "node_a",
+                 "event_type": "unknown_type", "message": "msg"}]
+        lines = Telemetry.format_log_for_cli(log)
+        assert len(lines) == 1
