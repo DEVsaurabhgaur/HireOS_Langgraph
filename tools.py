@@ -98,6 +98,14 @@ def _repair_json(text: str) -> str:
     """
     Attempt to repair a truncated JSON string by auto-closing open brackets/strings.
     Used as a last resort when Gemini 2.5-flash thinking model returns partial output.
+
+    Strategy:
+        1. Walk through the string tracking open/close brackets and string state
+        2. If we're inside an unclosed string, append a closing quote
+        3. Close any open containers ({, [) in reverse order
+
+    This is intentionally permissive — a partial valid response is better than
+    raising an error, especially for non-critical fields like ats_tips.
     """
     # Close unclosed string if we're in one
     in_string = False
