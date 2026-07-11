@@ -8,6 +8,8 @@
 ![Gemini](https://img.shields.io/badge/Google%20Gemini-2.0%20Flash-4285F4?style=for-the-badge&logo=google&logoColor=white)
 ![Vercel](https://img.shields.io/badge/Live%20on-Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)
 ![Razorpay](https://img.shields.io/badge/Payments-Razorpay-02042B?style=for-the-badge&logo=razorpay&logoColor=white)
+![Tests](https://github.com/DEVsaurabhgaur/HireOS_Langgraph/actions/workflows/tests.yml/badge.svg)
+![Lint](https://github.com/DEVsaurabhgaur/HireOS_Langgraph/actions/workflows/lint.yml/badge.svg)
 
 ### **The only AI tool that actually rewrites your resume — not just scores it.**
 
