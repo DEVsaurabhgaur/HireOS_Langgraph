@@ -94,7 +94,7 @@ def main():
                         help="Google Gemini API key (or set GOOGLE_API_KEY env var)")
     parser.add_argument("--jd",       required=True, help="Path to job description text file")
     parser.add_argument("--resumes",  required=True, help="Path to resumes file (--- separated)")
-    parser.add_argument("--output",   default="hireos_output.json", help="Output JSON path")
+    parser.add_argument("--output",   default="hireos_output.json", help="Output JSON path (default: hireos_output.json)")
     parser.add_argument("--max-iter", type=int, default=20, help="Max supervisor iterations")
     parser.add_argument("--no-memory", action="store_true",
                         help="Disable LangGraph MemorySaver (single-shot mode)")
