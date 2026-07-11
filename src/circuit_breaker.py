@@ -37,6 +37,10 @@ class BreakerState:
     recovery_timeout: float = 45.0      # seconds in OPEN before probe
     success_threshold: int = 1          # successes in HALF_OPEN to close
 
+    def __repr__(self) -> str:
+        return (f"BreakerState(name={self.name!r}, state={self.state!r}, "
+                f"failures={self.failure_count}, successes={self.success_count})")
+
 
 # ── Registry ──────────────────────────────────────────────────────────────────
 
