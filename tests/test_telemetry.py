@@ -67,3 +67,21 @@ class TestStartNode:
         result = Telemetry.start_node(original, "parse_resume")
         assert original["parse_resume"]["status"] == "pending"
         assert result["parse_resume"]["status"] == "running"
+
+
+class TestSuccessNode:
+    def test_sets_status_to_success(self):
+        m = Telemetry.start_node({}, "node_a")
+        m = Telemetry.success_node(m, "node_a")
+        assert m["node_a"]["status"] == "success"
+
+    def test_calculates_duration(self):
+        m = Telemetry.start_node({}, "node_a")
+        m = Telemetry.success_node(m, "node_a")
+        assert m["node_a"]["duration_ms"] is not None
+        assert m["node_a"]["duration_ms"] >= 0
+
+    def test_records_end_time(self):
+        m = Telemetry.start_node({}, "node_a")
+        m = Telemetry.success_node(m, "node_a")
+        assert "end_time" in m["node_a"]
