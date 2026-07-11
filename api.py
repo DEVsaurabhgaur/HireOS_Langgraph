@@ -60,6 +60,14 @@ log = logging.getLogger("hireos")
 # ─── App ──────────────────────────────────────────────────────────────────────
 app = FastAPI(title="HireOS API", version="2.0.0", docs_url=None, redoc_url=None)
 
+
+@app.on_event("startup")
+async def startup_event():
+    """Log startup configuration for debugging deployment issues."""
+    log.info("HireOS API v2.0.0 starting up")
+    log.info("Gemini key configured: %s", "yes" if os.getenv("GOOGLE_API_KEY") else "NO")
+    log.info("Razorpay configured: %s", "yes" if os.getenv("RAZORPAY_KEY_ID") else "no")
+
 # ── CORS ───────────────────────────────────────────────────────────────
 # Allow all origins so Vercel preview URLs and custom domains work without
 # hardcoding. Rate limiting + input validation are the security layer instead.
