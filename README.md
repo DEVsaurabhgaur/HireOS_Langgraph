@@ -17,6 +17,23 @@
 
 ---
 
+## 📑 Table of Contents
+
+- [What is HireOS?](#-what-is-hireos)
+- [Live Demo](#-live-demo)
+- [Tech Stack](#️-tech-stack)
+- [Run Locally](#-run-locally)
+- [Deploy to Vercel](#-deploy-to-vercel-1-click)
+- [API Reference](#-api-reference)
+- [Security](#️-security)
+- [Performance](#-performance)
+- [Pricing](#-pricing)
+- [Contributing](#-contributing)
+- [Author](#-author)
+- [License](#-license)
+
+---
+
 ## 🎯 What is HireOS?
 
 Most resume tools just give you a score and leave you guessing. **HireOS goes further** — it tells you *exactly* what to fix and rewrites your resume with the precise keywords from the job description.
