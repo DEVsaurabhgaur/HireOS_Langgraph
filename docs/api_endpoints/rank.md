@@ -11,3 +11,5 @@ Ranks up to 10 resumes against a JD.
 ## Response
 
 List of scored candidates with ranked position and summary recommendations.
+
+Note: Parallel parsing is executed concurrently.
