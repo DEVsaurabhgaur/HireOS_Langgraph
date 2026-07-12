@@ -11,3 +11,8 @@ How HireOS communicates with Google Gemini API.
 
 - Input text is trimmed to reduce token overhead
 - Output max tokens capped at 4096 to minimize latency
+
+## JSON Handling
+
+- Strictly requests MIME type application/json
+- Implements fallback JSON repair for truncated text
