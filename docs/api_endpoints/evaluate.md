@@ -12,3 +12,5 @@ Scores interview practice responses.
 ## Response
 
 Score (1-10), list of strengths, gaps, and coaching feedback.
+
+Maintains higher rate limits for practice responses.
