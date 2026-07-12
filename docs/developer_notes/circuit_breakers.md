@@ -13,3 +13,9 @@ Calls are immediately blocked. Enforces timeout before transitioning.
 ## HALF_OPEN State
 
 Allows a single probe call to test remote server status.
+
+## Parameters
+
+- failure_threshold: 3
+- recovery_timeout: 45s
+- success_threshold: 1
