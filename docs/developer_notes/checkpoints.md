@@ -13,3 +13,7 @@ Triggered on persistent failures to restore the last safe state.
 ## Storage Limits
 
 Kept bounded up to MAX_CHECKPOINTS (12 entries).
+
+## Memory Safety
+
+Prevents infinite loops and out of memory crashes.
