@@ -174,3 +174,5 @@ class TestFormatLogForCli:
         assert len(lines) == 1
 
 # Tests run metrics summation and averaging calculations.
+
+# Tests timestamp creation and duration recording metrics.
