@@ -1,5 +1,10 @@
 """
 tests/test_tools.py
+
+Unit tests verifying JSON parse, repair, and input trim functions.
+"""
+"""
+tests/test_tools.py
 Unit tests for tools.py helper functions (_trim, _parse_json, _repair_json).
 These test pure functions — no Gemini API calls.
 """
