@@ -11,3 +11,5 @@ Runs full parse, score and question generation.
 ## Response
 
 JSON dictionary with success, candidate, score, and questions key.
+
+See /api/health for base testing.
