@@ -14,3 +14,7 @@ Pure python implementation. No redis dependency required.
 ## HTTP Responses
 
 Raises HTTP 429 when limits are exceeded.
+
+## Memory Cleanup
+
+Evicts stale IPs automatically to prevent memory leaks.
