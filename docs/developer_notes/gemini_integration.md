@@ -16,3 +16,7 @@ How HireOS communicates with Google Gemini API.
 
 - Strictly requests MIME type application/json
 - Implements fallback JSON repair for truncated text
+
+## Errors
+
+- Handles 429 quota exhaustion and 503 unavailability gracefully
