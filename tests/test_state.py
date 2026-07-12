@@ -106,3 +106,5 @@ class TestPipelineOrder:
 
     def test_no_duplicates(self):
         assert len(PIPELINE_ORDER) == len(set(PIPELINE_ORDER))
+
+# Validates default values and metrics dictionary setup.
