@@ -176,3 +176,5 @@ class TestFormatLogForCli:
 # Tests run metrics summation and averaging calculations.
 
 # Tests timestamp creation and duration recording metrics.
+
+# Tests icons representation for console outputs.
