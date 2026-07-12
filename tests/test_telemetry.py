@@ -1,5 +1,10 @@
 """
 tests/test_telemetry.py
+
+Unit tests verifying execution log structures and summary statistics.
+"""
+"""
+tests/test_telemetry.py
 Unit tests for the Telemetry helper — structured logging and metrics.
 """
 
