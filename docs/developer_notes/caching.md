@@ -14,3 +14,7 @@ SHA-256 hash generated from sanitized resume and job description.
 
 - Maximum entries: 100
 - Eviction strategy: LRU
+
+## Performance
+
+Reduces latency to sub-millisecond for cached queries.
