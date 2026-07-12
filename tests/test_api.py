@@ -80,3 +80,5 @@ class TestRateLimiter:
 class TestConstants:
     def test_max_file_bytes_is_3mb(self):
         assert MAX_FILE_BYTES == 3 * 1024 * 1024
+
+# Tests for the API input sanitization utilities.
