@@ -108,3 +108,5 @@ class TestPipelineOrder:
         assert len(PIPELINE_ORDER) == len(set(PIPELINE_ORDER))
 
 # Validates default values and metrics dictionary setup.
+
+# Ensures api_key and checkpoints lists are stripped from snapshot.
