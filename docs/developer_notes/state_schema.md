@@ -7,3 +7,8 @@ Detailed specifications of the HireOSState TypedDict.
 - job_description: String
 - raw_resumes: List of strings
 - api_key: String
+
+## Processing Fields
+
+- parsed_candidates: List of parsed resumes
+- scored_candidates: List of scores
