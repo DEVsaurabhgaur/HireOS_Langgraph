@@ -102,3 +102,5 @@ class TestRepairJson:
         assert parsed["items"] == [1, 2, 3]
 
 # Tests truncation of resume and job description inputs.
+
+# Tests fallback JSON correction for incomplete LLM outputs.
