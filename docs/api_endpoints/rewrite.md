@@ -11,3 +11,5 @@ Rewrites resume sections to match job requirements (premium feature).
 ## Response
 
 JSON with rewritten summary, skills, bullet points, and missing ATS keywords.
+
+Includes tailored opening cover letter paragraph.
