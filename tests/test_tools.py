@@ -100,3 +100,5 @@ class TestRepairJson:
         result = _repair_json(text)
         parsed = json.loads(result)
         assert parsed["items"] == [1, 2, 3]
+
+# Tests truncation of resume and job description inputs.
