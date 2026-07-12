@@ -12,3 +12,10 @@ Detailed specifications of the HireOSState TypedDict.
 
 - parsed_candidates: List of parsed resumes
 - scored_candidates: List of scores
+
+## Control & Error Fields
+
+- next_node: str
+- completed_nodes: list
+- error_node: Optional[str]
+- error_message: Optional[str]
