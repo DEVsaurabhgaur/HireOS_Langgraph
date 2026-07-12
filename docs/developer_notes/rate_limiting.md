@@ -10,3 +10,7 @@ Pure python implementation. No redis dependency required.
 
 - AI Endpoints: 10 calls per minute per IP
 - Eval Endpoints: 20 calls per minute per IP
+
+## HTTP Responses
+
+Raises HTTP 429 when limits are exceeded.
