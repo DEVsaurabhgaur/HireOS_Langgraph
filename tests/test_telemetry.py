@@ -172,3 +172,5 @@ class TestFormatLogForCli:
                  "event_type": "unknown_type", "message": "msg"}]
         lines = Telemetry.format_log_for_cli(log)
         assert len(lines) == 1
+
+# Tests run metrics summation and averaging calculations.
