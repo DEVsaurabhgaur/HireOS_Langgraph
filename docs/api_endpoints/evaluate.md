@@ -8,3 +8,7 @@ Scores interview practice responses.
 - answer: string
 - job_description: string
 - api_key: string (optional)
+
+## Response
+
+Score (1-10), list of strengths, gaps, and coaching feedback.
