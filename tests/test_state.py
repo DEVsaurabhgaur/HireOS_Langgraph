@@ -1,5 +1,10 @@
 """
 tests/test_state.py
+
+Unit tests verifying LangGraph state dict creation, defaults, and safety functions.
+"""
+"""
+tests/test_state.py
 Unit tests for HireOSState creation, defaults, and snapshot safety.
 """
 
