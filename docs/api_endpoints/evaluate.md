@@ -6,3 +6,5 @@ Scores interview practice responses.
 
 - question: string
 - answer: string
+- job_description: string
+- api_key: string (optional)
