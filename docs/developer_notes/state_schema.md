@@ -19,3 +19,9 @@ Detailed specifications of the HireOSState TypedDict.
 - completed_nodes: list
 - error_node: Optional[str]
 - error_message: Optional[str]
+
+## Observability
+
+- execution_log: List of events
+- node_metrics: Dict of stats
+- circuit_breaker_states: Dict of states
