@@ -1,5 +1,10 @@
 """
 tests/test_api.py
+
+Unit tests verifying rate limiting, sanitization, and friendly error masking.
+"""
+"""
+tests/test_api.py
 Unit tests for the FastAPI application — input validation, rate limiting,
 and route behaviour. All Gemini calls are mocked.
 """
