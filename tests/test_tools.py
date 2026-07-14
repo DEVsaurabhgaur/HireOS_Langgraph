@@ -82,6 +82,12 @@ class TestParseJson:
         assert result["outer"]["inner"] == [1, 2, 3]
 
 
+class TestGeminiKeyRedact:
+    def test_call_gemini_redacts_key_in_logs(self):
+        from tools import _redact_key
+        assert _redact_key("AIzaSyTestApiKeyForVerification") == "AIza...tion"
+        assert _redact_key("short") == "..."
+
 class TestRepairJson:
     def test_complete_json_unchanged(self):
         text = '{"key": "value"}'
