@@ -68,6 +68,10 @@ class TestParseJson:
         with pytest.raises(ValueError, match="Empty response"):
             _parse_json("   \n  ")
 
+    def test_parse_json_no_object(self):
+        with pytest.raises(ValueError):
+            _parse_json("[1, 2, 3]")
+
     def test_no_json_raises(self):
         with pytest.raises(ValueError, match="No JSON found"):
             _parse_json("This is just plain text without any braces")
