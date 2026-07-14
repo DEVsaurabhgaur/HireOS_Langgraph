@@ -121,6 +121,7 @@ _eval_limiter = _RateLimiter(max_calls=20, window=60)  # 20 eval calls / min / I
 def _check_rate(limiter: _RateLimiter, request: Request):
     ip = request.client.host if request.client else "unknown"
     if not limiter.is_allowed(ip):
+        log.warning(f"Rate limit exceeded for IP: {ip}")
         raise HTTPException(429, "Too many requests. Please wait a minute and try again.")
 
 
