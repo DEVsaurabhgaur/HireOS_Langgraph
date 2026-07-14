@@ -28,6 +28,11 @@ HireOS implements the following security controls:
 - **Zero data retention** — resumes processed in memory, never stored
 - **Owner bypass protection** — SHA-256 hashed secret, never in source
 
+## Production Recommendations
+
+- Enforce HTTPS across all public client connections.
+- Rely on proxy/load-balancer rate limits (e.g. Nginx, Cloudflare) in production.
+
 ## Dependencies
 
 We regularly audit dependencies for known vulnerabilities.
