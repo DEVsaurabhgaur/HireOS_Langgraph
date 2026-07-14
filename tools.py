@@ -169,7 +169,10 @@ def _parse_json(raw: str) -> dict:
 
     # 1st attempt: direct parse
     try:
-        return json.loads(text)
+        parsed = json.loads(text)
+        if isinstance(parsed, dict):
+            return parsed
+        # If it parsed as a list/etc., fall through to parse as object
     except json.JSONDecodeError:
         pass
 
