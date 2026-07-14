@@ -193,8 +193,9 @@ def _resolve_key(api_key: str | None) -> str:
         key = os.getenv("GOOGLE_API_KEY", "")
     if not key:
         raise HTTPException(400, "No API key available. Please add a Gemini API key.")
-    # Basic sanity check — Gemini keys start with "AI" or "AQ"
-    if len(key) < 20:
+    # Basic sanity check using validate_api_key_format
+    from validators import validate_api_key_format
+    if not validate_api_key_format(key):
         raise HTTPException(400, "Invalid API key format.")
     return key
 
