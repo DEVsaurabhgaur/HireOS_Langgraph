@@ -21,6 +21,11 @@ from google.genai import errors as genai_errors
 MODEL_PRIMARY  = "models/gemini-2.0-flash"    # 15 RPM free, fast, reliable ← PRIMARY
 MODEL_FALLBACK = "models/gemini-2.5-flash"    # 10 RPM free, higher quality ← FALLBACK
 
+def _redact_key(api_key: str) -> str:
+    if not api_key: return ""
+    return api_key[:4] + "..." + api_key[-4:] if len(api_key) > 8 else "..."
+
+
 # Max chars sent to Gemini (saves tokens)
 _MAX_RESUME_CHARS = 6_000   # ~1500 tokens — covers any normal resume
 _MAX_JD_CHARS     = 4_000   # ~1000 tokens — covers any real JD
@@ -73,7 +78,7 @@ def _call_gemini(system_prompt: str, user_prompt: str, api_key: str) -> str:
             last_error = e
             err_str = str(e)
             if "429" in err_str or "RESOURCE_EXHAUSTED" in err_str:
-                print(f"  [quota] {model} quota hit — trying fallback...")
+                print(f"  [quota] {model} quota hit for key {_redact_key(api_key)} — trying fallback...")
                 continue
             if "503" in err_str or "UNAVAILABLE" in err_str:
                 print(f"  [503] {model} unavailable — trying fallback...")
