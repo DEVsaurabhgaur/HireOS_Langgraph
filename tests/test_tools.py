@@ -28,6 +28,11 @@ class TestTrim:
         text = "a" * 50
         assert _trim(text, 50) == text
 
+    def test_trim_adds_truncation_note(self):
+        text = "abcde"
+        result = _trim(text, 2)
+        assert result == "ab\n[...truncated for brevity]"
+
     def test_long_text_truncated(self):
         text = "a" * 100
         result = _trim(text, 50)
