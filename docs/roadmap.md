@@ -28,3 +28,9 @@
 - [x] Interview practice mode
 - [x] Per-IP rate limiting
 - [x] TTL result caching
+
+
+## Security Enhancements
+
+- Integrate static application security testing (SAST) in CI.
+- Automate dependency vulnerability scans.
