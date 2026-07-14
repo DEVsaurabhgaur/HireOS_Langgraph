@@ -23,7 +23,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from tests.conftest import (
     FAKE_PARSED_CANDIDATE, FAKE_SCORE, FAKE_QUESTIONS, FAKE_RANKING,
-    make_mock_call_claude,
+    make_mock_call_gemini,
 )
 from src.state           import create_initial_state, PIPELINE_ORDER
 from src.circuit_breaker import CircuitBreakerRegistry
