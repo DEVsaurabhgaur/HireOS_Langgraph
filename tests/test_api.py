@@ -34,6 +34,12 @@ class TestSanitize:
         result = _sanitize("a\n\n\n\n\nb", 100)
         assert "\n\n\n\n" not in result
 
+    def test_sanitize_removes_unwanted_unicode(self):
+        from validators import sanitize_input_text
+        result = sanitize_input_text("hello\u200bworld\x07")
+        assert "\u200b" not in result
+        assert "\x07" not in result
+
 
 class TestFriendlyError:
     def test_quota_error(self):
