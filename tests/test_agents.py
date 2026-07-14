@@ -59,7 +59,7 @@ class TestSuccessPath:
         assert len(result["parsed_candidates"]) == 1
         assert result["parsed_candidates"][0]["name"] == "Alice Test"
 
-    @patch("tools._call_claude", make_mock_call_claude(FAKE_PARSED_CANDIDATE))
+    @patch("tools._call_gemini", make_mock_call_gemini(FAKE_PARSED_CANDIDATE))
     def test_success_adds_node_to_completed(self):
         state  = _base_state()
         result = parse_resume_agent(state)
