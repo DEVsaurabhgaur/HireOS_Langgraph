@@ -72,7 +72,7 @@ class TestSuccessPath:
         assert result["node_metrics"]["parse_resume"]["status"] == "success"
         assert result["node_metrics"]["parse_resume"]["duration_ms"] is not None
 
-    @patch("tools._call_claude", make_mock_call_claude(FAKE_PARSED_CANDIDATE))
+    @patch("tools._call_gemini", make_mock_call_gemini(FAKE_PARSED_CANDIDATE))
     def test_success_clears_error_fields(self):
         state = _base_state()
         state["error_node"]    = "parse_resume"
