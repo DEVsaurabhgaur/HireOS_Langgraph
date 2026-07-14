@@ -201,3 +201,8 @@ MIT — free to use, modify, and distribute with attribution.
 <div align="center">
 Built with ❤️ using Google Gemini + LangGraph · 🇮🇳 Made in India
 </div>
+
+
+## Security
+
+For details on input validation, rate limiting, and core system sanitization, see the [Security Developer Notes](docs/developer_notes/security_guidelines.md).
