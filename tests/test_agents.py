@@ -132,7 +132,7 @@ class TestRetryPath:
                 raise ValueError("flaky")
             return json.dumps(FAKE_PARSED_CANDIDATE)
 
-        with patch("tools._call_claude", side_effect=flaky):
+        with patch("tools._call_gemini", side_effect=flaky):
             with patch("src.agents.time.sleep"):
                 state  = _base_state()
                 result = parse_resume_agent(state)
