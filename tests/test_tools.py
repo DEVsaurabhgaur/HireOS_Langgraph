@@ -95,6 +95,12 @@ class TestRepairJson:
         result = _repair_json(text)
         assert result.endswith("}")
 
+    def test_repair_json_nested(self):
+        text = '{"a": {"b": [1, 2'
+        result = _repair_json(text)
+        parsed = json.loads(result)
+        assert parsed["a"]["b"] == [1, 2]
+
     def test_repairs_unclosed_array(self):
         text = '{"items": [1, 2, 3'
         result = _repair_json(text)
