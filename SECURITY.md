@@ -38,6 +38,10 @@ HireOS implements the following security controls:
 - Rotate API keys every 90 days to minimize leakage impact.
 - Ensure keys are not committed to source version control.
 
+## Validation Bounds
+
+- File limits (3MB max) and parsing truncations (10k chars max) protect host resources.
+
 ## Dependencies
 
 We regularly audit dependencies for known vulnerabilities.
