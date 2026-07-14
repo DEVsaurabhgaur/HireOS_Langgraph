@@ -41,6 +41,11 @@ class TestSanitize:
         assert "\x07" not in result
 
 
+class TestValidators:
+    def test_validate_api_key_format_valid(self):
+        from validators import validate_api_key_format
+        assert validate_api_key_format("AIzaSyD-SecureKey123") is True
+
 class TestFriendlyError:
     def test_quota_error(self):
         msg = _friendly_error(Exception("429 RESOURCE_EXHAUSTED"))
