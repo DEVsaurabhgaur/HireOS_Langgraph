@@ -95,6 +95,9 @@ class TestRepairJson:
         result = _repair_json(text)
         assert result.endswith("}")
 
+    def test_repair_json_empty_input(self):
+        assert _repair_json("") == ""
+
     def test_repair_json_nested(self):
         text = '{"a": {"b": [1, 2'
         result = _repair_json(text)
