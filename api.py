@@ -175,7 +175,7 @@ def _sanitize(text: str, max_len: int) -> str:
     # Collapse runs of >3 blank lines to 1 blank line
     import re
     text = re.sub(r"\n{4,}", "\n\n", text)
-    from validators import detect_prompt_injection, sanitize_input_text
+    from src.validators import detect_prompt_injection, sanitize_input_text
     text = sanitize_input_text(text)
     if detect_prompt_injection(text):
         log.warning("Suspicious prompt injection pattern detected in input text.")
@@ -199,7 +199,7 @@ def _resolve_key(api_key: str | None) -> str:
     if not key:
         raise HTTPException(400, "No API key available. Please add a Gemini API key.")
     # Basic sanity check using validate_api_key_format
-    from validators import validate_api_key_format
+    from src.validators import validate_api_key_format
     if not validate_api_key_format(key):
         raise HTTPException(400, "Invalid API key format.")
     return key
