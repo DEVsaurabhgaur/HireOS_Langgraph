@@ -217,7 +217,7 @@ def _extract_text_sync(content: bytes, filename: str) -> str:
             doc = Document(io.BytesIO(content))
             text = "\n".join(p.text for p in doc.paragraphs if p.text.strip())
             if text.strip():
-                return _sanitize(text, 12_000)
+                return _sanitize(text, 10_000)
         except Exception as e:
             raise HTTPException(400, f"Cannot parse DOCX: {e}. Try PDF or TXT.")
 
@@ -238,10 +238,10 @@ def _extract_text_sync(content: bytes, filename: str) -> str:
                     text = "\n".join(page.extract_text() or "" for page in pdf.pages)
             except Exception as e:
                 raise HTTPException(400, f"Cannot parse PDF: {e}. Try copy-pasting to TXT.")
-        return _sanitize(text, 12_000)
+        return _sanitize(text, 10_000)
 
     # Plain text
-    return _sanitize(content.decode("utf-8", errors="replace"), 12_000)
+    return _sanitize(content.decode("utf-8", errors="replace"), 10_000)
 
 
 async def _extract_text(content: bytes, filename: str) -> str:
