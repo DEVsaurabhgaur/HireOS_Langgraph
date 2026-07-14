@@ -185,7 +185,7 @@ class TestFailurePath:
         assert "rollback" in types
 
     def test_node_not_added_to_completed_on_failure(self):
-        with patch("tools._call_claude", side_effect=self._always_fails):
+        with patch("tools._call_gemini", side_effect=self._always_fails):
             with patch("src.agents.time.sleep"):
                 state  = _base_state()
                 result = parse_resume_agent(state)
