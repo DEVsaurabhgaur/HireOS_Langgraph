@@ -33,6 +33,11 @@ HireOS implements the following security controls:
 - Enforce HTTPS across all public client connections.
 - Rely on proxy/load-balancer rate limits (e.g. Nginx, Cloudflare) in production.
 
+## Secrets Management
+
+- Rotate API keys every 90 days to minimize leakage impact.
+- Ensure keys are not committed to source version control.
+
 ## Dependencies
 
 We regularly audit dependencies for known vulnerabilities.
