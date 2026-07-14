@@ -46,6 +46,10 @@ class TestValidators:
         from validators import validate_api_key_format
         assert validate_api_key_format("AIzaSyD-SecureKey123") is True
 
+    def test_validate_api_key_format_invalid(self):
+        from validators import validate_api_key_format
+        assert validate_api_key_format("invalid-key-no-prefix") is False
+
 class TestFriendlyError:
     def test_quota_error(self):
         msg = _friendly_error(Exception("429 RESOURCE_EXHAUSTED"))
