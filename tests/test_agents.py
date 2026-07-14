@@ -51,7 +51,7 @@ def _base_state(run_id="test-run-1"):
 # ── Success path ──────────────────────────────────────────────────────────────
 
 class TestSuccessPath:
-    @patch("tools._call_claude", make_mock_call_claude(FAKE_PARSED_CANDIDATE))
+    @patch("tools._call_gemini", make_mock_call_gemini(FAKE_PARSED_CANDIDATE))
     def test_parse_resume_success_updates_state(self):
         state  = _base_state()
         result = parse_resume_agent(state)
