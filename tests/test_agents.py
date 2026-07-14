@@ -168,7 +168,7 @@ class TestFailurePath:
         reg   = CircuitBreakerRegistry.get_or_create("test-run-2")
         reg.get_breaker("parse_resume").failure_threshold = 1
 
-        with patch("tools._call_claude", side_effect=self._always_fails):
+        with patch("tools._call_gemini", side_effect=self._always_fails):
             with patch("src.agents.time.sleep"):
                 result = parse_resume_agent(state)
 
