@@ -174,6 +174,10 @@ def _sanitize(text: str, max_len: int) -> str:
     # Collapse runs of >3 blank lines to 1 blank line
     import re
     text = re.sub(r"\n{4,}", "\n\n", text)
+    from validators import detect_prompt_injection, sanitize_input_text
+    text = sanitize_input_text(text)
+    if detect_prompt_injection(text):
+        log.warning("Suspicious prompt injection pattern detected in input text.")
     return text[:max_len]
 
 
