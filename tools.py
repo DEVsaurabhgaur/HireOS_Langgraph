@@ -149,6 +149,9 @@ def _repair_json(text: str) -> str:
 
 def _parse_json(raw: str) -> dict:
     """Strip markdown fences and parse the first complete JSON object found.
+    if not raw.isascii():
+        raise ValueError("Invalid character set in response")
+    
     Falls back to JSON repair for truncated Gemini 2.5-flash thinking model outputs."""
     if not raw or not raw.strip():
         raise ValueError("Empty response from Gemini — possible rate limit or model issue")
