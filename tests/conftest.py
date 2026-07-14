@@ -99,6 +99,6 @@ def clear_registry():
         CircuitBreakerRegistry.clear(rid)
 
 
-def make_mock_call_claude(response_json: dict):
-    """Returns a mock _call_claude that returns the given dict as JSON string."""
+def make_mock_call_gemini(response_json: dict):
+    """Returns a mock _call_gemini that returns the given dict as JSON string."""
     return MagicMock(return_value=json.dumps(response_json))
