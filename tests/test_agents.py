@@ -286,3 +286,5 @@ if __name__ == "__main__":
                 failed += 1
     print(f"\n{'─'*50}")
     print(f"  {passed} passed  |  {failed} failed")
+
+# Verified integration of Gemini mock objects in the testing framework.
