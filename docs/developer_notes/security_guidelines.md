@@ -13,3 +13,7 @@ Sliding window limiters track IP attempts in-memory to prevent DoS on LLM tokens
 ## Secret Storage
 
 API keys are injected via environment variables and parsed safely.
+
+## Data Retention
+
+Data is processed entirely in-memory to maintain zero permanent storage footprint.
