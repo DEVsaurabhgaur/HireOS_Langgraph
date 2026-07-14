@@ -107,13 +107,13 @@ class TestRetryPath:
         """
         call_count = {"n": 0}
 
-        def flaky_claude(system, user, api_key):
+        def flaky_gemini(system, user, api_key):
             call_count["n"] += 1
             if call_count["n"] < 2:
                 raise ConnectionError("transient network error")
             return json.dumps(FAKE_PARSED_CANDIDATE)
 
-        with patch("tools._call_claude", side_effect=flaky_claude):
+        with patch("tools._call_gemini", side_effect=flaky_gemini):
             # Patch sleep to not actually wait
             with patch("src.agents.time.sleep"):
                 state  = _base_state()
