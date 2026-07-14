@@ -118,6 +118,10 @@ class TestFileValidators:
         assert validate_file_size(b"a" * 11, 10) is False
         assert validate_file_size(b"a" * 5, 10) is True
 
+    def test_empty_filename_validation(self):
+        from validators import validate_file_extension
+        assert validate_file_extension("") is False
+
 class TestConstants:
     def test_max_file_bytes_is_3mb(self):
         assert MAX_FILE_BYTES == 3 * 1024 * 1024
