@@ -111,6 +111,13 @@ class TestRateLimiter:
         assert rl.is_allowed("ip1") is False
 
 
+class TestFileValidators:
+    def test_file_size_validation_limits(self):
+        from validators import validate_file_size
+        assert validate_file_size(b"", 10) is False
+        assert validate_file_size(b"a" * 11, 10) is False
+        assert validate_file_size(b"a" * 5, 10) is True
+
 class TestConstants:
     def test_max_file_bytes_is_3mb(self):
         assert MAX_FILE_BYTES == 3 * 1024 * 1024
